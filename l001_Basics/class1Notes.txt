@@ -26,3 +26,7 @@ public class l001Basics {
 
 to run command -> javac l001Basics.java && java l001Basics >
 output.txt  (1st is for compile and after && is for run and then to throw output in out file use '>')
+
+
+//errors
+1) enum error -> means 1 extra curly brace hai
