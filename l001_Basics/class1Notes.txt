@@ -1,0 +1,28 @@
+dec 22 -> class 1
+
+BASIC SYNTAX OF CPP
+#include<iostream>  yeh btata hai ki input or output ke liye
+#include<iostream>
+using namespace std;  //yeh jo bhi work krte hai uske liye likha hai
+
+int main() {  //yeh sabse phle chlta hai
+    return 0;  //terminal ho chuka hai program means finish
+}
+
+//to run output command -> g++ l001Basics.cpp(file name) -o out && out -> for windows  (isse ik out.exe file create hogyi)
+g++ l001Basics.cpp(file name) -o out && ./out -> for macc user 
+
+//====================================================
+JAVA: -> It is purely object oriented so jo bhi krege class me krege
+
+TEMPLATE FOR JAVA:
+public class l001Basics {
+    public static void main(String[] args) {  //static means sbse phle compile hoti hai
+        //java jo input leti hai vo String.args se leti hai
+        System.out.println("hello");  //ln is for nextLine
+        System.out.print("pepcoder");
+    }
+}
+
+to run command -> javac l001Basics.java && java l001Basics >
+output.txt  (1st is for compile and after && is for run and then to throw output in out file use '>')
