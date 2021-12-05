@@ -27,6 +27,13 @@ public class l001Basics {
 to run command -> javac l001Basics.java && java l001Basics >
 output.txt  (1st is for compile and after && is for run and then to throw output in out file use '>')
 
+=========================================
+THEORY:->
+
+[NOTE: interview me hame ques given hota hai toh uski jo variale hota hai uski value hum change kar skte hai
+    eg: function arr(int[] a)  toh isme jo a hai uska name ham change kar skte hai]
+
+2) ADDition in string -> "10" + "20" = 1020 output but in integer it is 30
 
 //errors
 1) enum error -> means 1 extra curly brace hai

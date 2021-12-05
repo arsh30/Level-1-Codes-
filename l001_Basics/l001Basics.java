@@ -3,46 +3,41 @@ import java.util.Scanner;
 public class l001Basics {
     public static Scanner scn = new Scanner(System.in);
 
-    public static int multiply(int a , int b) {
+    public static int multiply(int a, int b) { // note: jb kuch return tb main me kisi variable me catch krte h always
         int c = a * b;
         return c;
     }
-    public static int add(int a , int b) {
+
+    public static int add(int a, int b) {
         int c = a + b;
         return c;
     }
-    public static int subtract(int a , int b) {
+
+    public static int subtract(int a, int b) {
         int c = a - b;
         return c;
     }
-    public static int divide(int a , int b) {
+
+    public static int divide(int a, int b) {
         int c = a / b;
         return c;
     }
-    public static void printMessage() {
+
+    public static void printMessage() { // jb return type void ho then we only just call the function kisi me catch
+                                        // vgara nahi krte
         System.out.println("hello this is arsh");
     }
-    // public static void main(String[] args) { //static means sbse phle compile hoti hai
-    //     //java jo input leti hai vo String.args se leti hai
-    //     System.out.println("hello"); //ln is for nextLine
-    //     System.out.print("pepcoder");
+
+    // public static void main(String[] args) { //static means sbse phle compile
+    // hoti hai
+    // //java jo input leti hai vo String.args se leti hai
+    // System.out.println("hello"); //ln is for nextLine
+    // System.out.print("pepcoder");
     // }
-    public static void main(String[] args) {
-        int a = scn.nextInt(); //in java:if we take the input first we import the scanner and make public static scanner scn = new scanner(system,in) then make variables in main
-        int b = scn.nextInt();
-        
-        // System.out.println(multiply(a, b));
-        // System.out.println(add(a, b));
-        // System.out.println(subtract(a, b));
-        // System.out.println(divide(a, b));
 
-        printZ();
-        int marks = scn.nextInt();
-        gradingSystem(marks);
-    }
-    //START WITH FUNCTIONS
+    // START WITH FUNCTIONS
 
-    //ques1 printz
+    // ques1 printz
     public static void printZ() {
         System.out.println("*****");
         System.out.println("   *");
@@ -51,7 +46,7 @@ public class l001Basics {
         System.out.println("*****");
     }
 
-    //ques2 -> Grading System
+    // ques2 -> Grading System
     public static void gradingSystem(int marks) {
         if (marks > 90) {
             System.out.println("excellent");
@@ -66,4 +61,74 @@ public class l001Basics {
         }
     }
 
+    /*
+     * NOTE: JO Cheez return krta hai function usko hm niche jo main hota hai udr
+     * catch krege then print krwaege
+     * 2) Jo void hota usko dirct call lgate hai hm
+     * 3) jo variable bnte hai vo niche se reference jata hai ie means jo bhi upr
+     * variable use krne hai vo niche bante hai
+     */
+
+    // CLASS 2: 23 DEC===========================================
+
+    /*
+     * [NOTE -> jbhi java ki file compile krte hai tb ">" jiski taraf muh open hota
+     * usme se read krta hai and jiski taraf tika arrow hota usme throw krta file
+     * command: javac l001Basics.java && java l001Basics < input.txt > output.txt]
+     * 
+     * for loop -> for (int i = 0; i < 10; i++); 1st argument is initialiser yeh 1
+     * time hi bnate hai, 2nd argument is "condition", 3rd argument is incr or
+     * decrem
+     * 
+     * while loop - > initailise;
+     * while(condion){
+     * do task;
+     * incre; we do this increment in the end of the while loop
+     * }
+     */
+    public static void printNTime(int n) {
+        for (int i = 0; i <= n; i++) {
+            System.out.println("hello");
+        }
+    }
+
+    // ques1:
+    public static void printTableOfN(int n) { // in java automatically type caste in the string
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(n + "X" + i + "=" + n * i);
+        }
+    }
+
+    // ques2 -> print table till m
+    public static void printTableTillM(int m) {
+        for (int i = 1; i <= m; i++) {
+            printTableOfN(i);
+            System.out.println();
+        }
+    }
+
+    // ques3 -> odd and even
+    public static void oddEven(int n) {
+        
+    }
+
+    public static void main(String[] args) {
+        // int a = scn.nextInt(); // in java:if we take the input first we import the
+        // scanner and make public
+        // // static scanner scn = new scanner(system,in) then make variables in main
+        // int b = scn.nextInt();
+
+        // System.out.println(multiply(a, b));
+        // System.out.println(add(a, b));
+        // System.out.println(subtract(a, b));
+        // System.out.println(divide(a, b));
+
+        // printZ();
+        // int marks = scn.nextInt();
+        // gradingSystem(marks);
+        int n = scn.nextInt();
+        // printNTime(n);
+        // printTableOfN(n);
+        printTableTillM(n);
+    }
 }
