@@ -35,5 +35,7 @@ THEORY:->
 
 2) ADDition in string -> "10" + "20" = 1020 output but in integer it is 30
 
+3) Java is Pass By value
+
 //errors
 1) enum error -> means 1 extra curly brace hai
