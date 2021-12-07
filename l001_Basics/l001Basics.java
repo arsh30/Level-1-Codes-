@@ -107,9 +107,51 @@ public class l001Basics {
         }
     }
 
-    // ques3 -> odd and even
+    // ques3 -> odd and even [means n no milege input sbke liye btayege ki od hai
+    // even]
     public static void oddEven(int n) {
-        
+        if (n % 2 == 0) {
+            System.out.println("even");
+        } else {
+            System.out.println("odd");
+        }
+    }
+
+    public static void checkNforOddEven() {
+        int n = scn.nextInt(); // we get n input (means total kitne number h) and check for each number
+                               // wheteher it is odd or not
+        for (int i = 1; i <= n; i++) {
+            int a = scn.nextInt(); // and check the each number it is odd or even
+            oddEven(a);
+        }
+    }
+
+    /*
+     * ques4 -> IsPrime [prime no are those which divide only by itself and 1]
+     * 
+     * 2) means if it divide between in the range [2 to N-1] mean no is not prime0
+     */
+    public static boolean isPrime(int n) { // not prime -> if it divides between 2 to N-1
+        // for (int i = 2; i < n; i++) {
+        for (int i = 2; i * i <= n; i++) {  //optimization version i is divisor jo which come in the denominator
+            if (n % i == 0)  // agar complete dvide hogya toh not prime
+                return false;
+        }
+        return true;
+    }
+
+    public static void primeNumber() {
+        int t = scn.nextInt(); // means we have given t numbers input eg t = 5;
+        for (int i = 0; i <= t; i++) {
+            int n = scn.nextInt(); // means t ke andr ke 15 number har ik liye btare h ki vo prime h ya nahi
+          
+            if (isPrime(n)) {
+                System.out.println("Number is prime");
+            } else {
+                System.out.println("Number is Not Prime");
+            }
+        }
+
     }
 
     public static void main(String[] args) {
@@ -126,9 +168,12 @@ public class l001Basics {
         // printZ();
         // int marks = scn.nextInt();
         // gradingSystem(marks);
-        int n = scn.nextInt();
+        // int n = scn.nextInt();
         // printNTime(n);
         // printTableOfN(n);
-        printTableTillM(n);
+        // printTableTillM(n);
+        int n = scn.nextInt(); // idr use krne k liye pass bhi krege
+        oddEven(n);
+        primeNumber();
     }
 }

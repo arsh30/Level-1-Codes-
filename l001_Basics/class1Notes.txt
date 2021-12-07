@@ -26,6 +26,51 @@ public class l001Basics {
 
 to run command -> javac l001Basics.java && java l001Basics >
 output.txt  (1st is for compile and after && is for run and then to throw output in out file use '>')
+=========================================
+ques: prime
+ public static boolean isPrime(int n) { // not prime -> if it divides between 2 to N-1
+        // for (int i = 2; i < n; i++) {
+        for (int i = 2; i * i <= n; i++) {  //optimization version
+            if (n % i == 0)  // agar complete dvide hogya toh not prime
+                return false;
+        }
+        return true;
+    }
+    public static void primeNumber() {
+        int t = scn.nextInt(); // means we have given t numbers input eg t = 5;
+        for (int i = 0; i <= t; i++) {
+            int n = scn.nextInt(); // means t ke andr ke 15 number har ik liye btare h ki vo prime h ya nahi
+          
+            if (isPrime(n)) {
+                System.out.println("Number is prime");
+            } else {
+                System.out.println("Number is Not Prime");
+            }
+        }
+
+    WHY THIS?
+
+     for (int i = 2; i * i <= n; i++) {  //optimization version Because TLE came, so check the constraint t = 10000 ie (10^4) and each t ke liye n -> (10^9)
+     so our pc do 1\10^9 operations per seconds.  so (10^4)(10^9)/10^9 = 10^4.
+
+    eg: 18, so ab kya prime no check krne k liye 2 to 17 tak har baar check krege? No Because jo har number hota hai vo prime number hota hai
+    eg: 15 on dividing this  (3^1,5^1) so 3,5 are both prime. Means "n" is the prime Number and we have to make it prime factor
+    .eg: n = (a.b) ie eg n = 36 = (2^3,2^3) so 2 and 3 are both prime
+
+    CASE 2: agar prime number na ho toh  n  = a will increase or b will decrease  eg 18
+            eg2:  n  = a will decrease or b will increase
+
+        ===============
+    SO,Overall, formuala n = (a.b) agar a jo hai vo satisfy hora hai to obvs b hora hoga,so better to find the prime factor eg 
+        36 prime factor is :6, 
+        17 prime factor is :4, 
+        25 prime factor is :5, 
+        18 prime factor is :4,   so agar hmko 4 se pehle koi divide hone wala milgya toh not prime otherwise it is prime
+        so we continue the loop till the sqaure root (agar usse pehle aaya toh it is prime otherwise it is not).
+
+
+
+
 
 =========================================
 THEORY:->
