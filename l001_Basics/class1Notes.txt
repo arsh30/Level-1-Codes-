@@ -82,5 +82,9 @@ THEORY:->
 
 3) Java is Pass By value
 
+4)imp**-> Jo variable create krte hai vo hum main me krte hai and then pass argument me krte hai in function arguments 
+    and argument ki value change bhi kar skte hai by irrespective vo apne aap catch krlega and jo main function jidr call kra hai uss function ko vo hmare arguments main wale lega
+
+
 //errors
 1) enum error -> means 1 extra curly brace hai

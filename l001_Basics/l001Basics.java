@@ -133,8 +133,8 @@ public class l001Basics {
      */
     public static boolean isPrime(int n) { // not prime -> if it divides between 2 to N-1
         // for (int i = 2; i < n; i++) {
-        for (int i = 2; i * i <= n; i++) {  //optimization version i is divisor jo which come in the denominator
-            if (n % i == 0)  // agar complete dvide hogya toh not prime
+        for (int i = 2; i * i <= n; i++) { // optimization version i is divisor jo which come in the denominator
+            if (n % i == 0) // agar complete dvide hogya toh not prime
                 return false;
         }
         return true;
@@ -144,14 +144,70 @@ public class l001Basics {
         int t = scn.nextInt(); // means we have given t numbers input eg t = 5;
         for (int i = 0; i <= t; i++) {
             int n = scn.nextInt(); // means t ke andr ke 15 number har ik liye btare h ki vo prime h ya nahi
-          
+
             if (isPrime(n)) {
                 System.out.println("Number is prime");
             } else {
                 System.out.println("Number is Not Prime");
             }
         }
+    }
 
+    // ques5 -> prime no till N [we given 2 numbers low,high,print all primeNumber
+    // between them]
+    public static void primeTillN(int low, int high) {
+        for (int i = low; i <= high; i++) {
+            if (isPrime(i))
+                System.out.println(i);
+        }
+    }
+
+    // ques6 -> print Fibonacci till N [0,1,1,2,3,5]
+    
+
+    // ques7 -> count digit of A number
+
+    /*
+     * agar hm number ko sirf 10 se divide krte hai then the number will get short,
+     * so har divide pr changes aate hai mmeans number chota hota hai
+     * 
+     * [doubt:-> isme hm modulus kyo nhi usse kra because hme yeh nahi pta ki rukna
+     * kidr hai and modulus gives us remainder ie 0 , therefore 0 is also a digit
+     * Eg:-> 1000 length is 4] but jb isko modulus krege then we will get 0 pta kese
+     * lgae ki digit aani band hogyi hai
+     * 
+     * 2) Use WHILE LOOP -> Mostly used When we dont know the exact idea when will
+     * we stop
+     * 
+     */
+    public static int countDigits(int n) {
+        int count = 0;
+        while (n != 0) {
+            n = n / 10;
+            count++;
+        }
+        return count;
+    }
+
+    // ques8 -> Print in a Reverse
+    public static void reverse(int n) {
+        while (n != 0) {
+            int lastDigit = n % 10; // means divide krege remainder ko print krege just
+            n = n / 10;
+            System.out.println(lastDigit);
+        }
+    }
+
+    // ques9 -> Reverse number
+    public static int reverseNumber(int n) {
+        int ans = 0;
+        while (n != 0) {
+            int lastDigit = n % 10;
+            n = n / 10;
+
+            ans = ans * 10 + lastDigit; // eg: 123 => 0 * 10 + 3 = 3
+        } // ans = 3 * 10 + 2 = 32;
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -172,8 +228,14 @@ public class l001Basics {
         // printNTime(n);
         // printTableOfN(n);
         // printTableTillM(n);
-        int n = scn.nextInt(); // idr use krne k liye pass bhi krege
-        oddEven(n);
-        primeNumber();
+        // int n = scn.nextInt(); // idr use krne k liye pass bhi krege
+        int low = scn.nextInt();
+        int high = scn.nextInt();
+
+        // oddEven(n);
+        // primeNumber();
+        primeTillN(low, high); // idr arguments me vo pass krte hai jo hmne idr declare kra aur upr function me
+                               // jo mrji pass krlo
+
     }
 }
