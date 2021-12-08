@@ -163,7 +163,7 @@ public class l001Basics {
     }
 
     // ques6 -> print Fibonacci till N [0,1,1,2,3,5]
-    
+
 
     // ques7 -> count digit of A number
 
@@ -209,6 +209,9 @@ public class l001Basics {
         } // ans = 3 * 10 + 2 = 32;
         return ans;
     }
+
+    //==============================================================
+    //CLASS3 -> 26TH DEC PATTERNS on different file
 
     public static void main(String[] args) {
         // int a = scn.nextInt(); // in java:if we take the input first we import the

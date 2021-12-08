@@ -1,0 +1,21 @@
+26th DECEMEBR
+PATTERNS:->  THEY follow some set of rules 
+1) try to always do in the term of nst and nsp (nsp-> no of stars, nsp -> no of spaces)
+
+2)always think about the first line then after printing the print 1s line think about 2nd line
+
+eg:print this  
+     *   1st line nst = 1, nsp = 4;  think in term of rows ie row -1 ie 4
+    **   2nd) -> now start the loop for rows how many rows are there
+   ***  3rd) -> print the stars and the spaces [means first space h toh uska loop phle likhege]
+  ****  4)spaces loop -> for(int csp = 1; csp <= nsp; csp++){syso("")};
+******  5)stars loop -> for(int cst = 1; cst <= nst; nst++) {syso("*")}
+        6) 4,5 point print the first line then go on second line ie increase of nst++ and nsp --;
+      
+=================================================================================================
+Three pattern do with i and j ways
+                                        
+1) *                                    2)              *             3)    *       *
+        *                                           *                           *
+            *                                    *                            *      *
+                *                              *                             *           *
