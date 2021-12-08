@@ -19,3 +19,42 @@ Three pattern do with i and j ways
         *                                           *                           *
             *                                    *                            *      *
                 *                              *                             *           *
+
+
+
+2) pattern 15 ->
+     /*
+        HOW TO THESE NUMBER TYPE PATTERN: -> 1) convert the shape into the star form
+        2)then convert krege jo start me hota hai row ke number means puri line vesi 
+        hoegi 
+        3)then think about between them
+        */
+
+        part 1 -> convert till number pattern
+          public static void pattern15(int row) {
+    int val = 1;  //because to print the number pattern
+    int nst = 1, nsp = row / 2;
+    for (int r = 1; r <= row; r++) {
+      for (int csp = 1; csp <= nsp; csp++) {
+        System.out.print("\t");
+      }
+      for (int cst = 1; cst <= nst; cst++) {
+        System.out.print(val +"\t");  //to print the number
+      }
+
+      //now come to 2nd row
+      if (r <= row / 2) {
+        nsp--;
+        nst += 2;
+        val = r + 1;
+      } else {
+        nsp++;
+        nst -= 2;
+        val = row - r;  //eg: row 5 - r (4) ie 1
+      }
+
+      System.out.println();
+    }
+  }
+  Now change the number inside them
+

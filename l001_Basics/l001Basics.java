@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class l001Basics {
     public static Scanner scn = new Scanner(System.in);
 
+    //dec 22
     public static int multiply(int a, int b) { // note: jb kuch return tb main me kisi variable me catch krte h always
         int c = a * b;
         return c;
@@ -60,7 +61,8 @@ public class l001Basics {
             System.out.println("below par");
         }
     }
-
+    //finish class 22nd DEC============================================
+    
     /*
      * NOTE: JO Cheez return krta hai function usko hm niche jo main hota hai udr
      * catch krege then print krwaege
