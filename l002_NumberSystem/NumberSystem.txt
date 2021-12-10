@@ -1,0 +1,79 @@
+    
+Any Number which we read it is in Decimal form. eg (246) with base 10. so binary code of 246 is 110011 with base 2.
+
+>BASES:->
+1) base 2 -> range (0,1)
+2) base 3 -> range (0,1,2)
+3) base 4 -> range (0,1,2,3)
+4) base 5 -> range (0,1,2,3,4)
+5) base 6 -> range (0,1,2,3,4,5)
+6) base 7 -> range (0,1,2,3,4,5,6)
+7) base 8 -> range (0,1,2,3,4,5,6,7)
+8) base 9 -> range (0,1,2,3,4,5,6,7,8)
+=========================================================
+# our system only in binary
+we enter the input it is in decimal form -> computer read the number in binary form -> then the output through to user which is also in decimal form
+
+eg: how to convert the number in binary form [imp -> jis base me convert krna hai usse divide krege and jo remainder hoga usse kam hona chaiye jisse divide krre h]
+
+eg: 246/2 = 123 and remainder = 0; 123/2 = 61 and remainder = 1, 61/2 = 30 and remainder = 1;  (and read the number from the bottom to up). basically gives lcm
+
+> integer store upto 10 digits
+> long store upto 20 digits
+========================================================
+
+eg: decimal to binary[jis number me convert krna hai usse divide krege]
+
+  public static long decimalToBinary(long n) {
+        long pow = 1, res = 0; // 10 raised to power 0
+
+        while (n != 0) {
+            // 1st find the remainder
+            long remainder = n % 2;
+            // 2nd then divide the number and will divide him by only the number that we
+            // want to convert binary ie base 2
+            n /= 2;
+
+            /*
+             * now the answer is from top to bottom but we want that the number should be in
+             * reverse form (normal hum number reverse krte
+             * hai is formulae se ans = ans * 10 + lastDigit; but in number system the power
+             * is increase so we will make it in power form)
+             */
+
+            res += remainder * pow; // eg suppose remainder(last digit)0 * 10 raised to power 1, 1 * 10 raised to
+                                    // power 2
+            pow *= 10; // power is increase by 10
+        }
+        return res;
+    }
+============================================
+
+    DECIMAL TO BINARY 
+
+    steps: 1) //1st step jisme number me convert krna hai uss base se divide
+             //2nd  //power multiply hoegi jidr se convert krna hai uska base ie binary
+
+    how to verify when doing lcm: last se multiply krege jisme convert krna hai and multiply
+     krege jisme bola gya with that power
+
+     eg: 245 -> binary is 11110101
+                and how to verify this:  start from last
+        1 * 2(jisme bola gya hai convert ke liye) raise to the power 0 + 0 * 2 raise to the power 1 + 1 * 2 rtp 2 + 0 * 2rtp 3....... and iska sum 245 ke equal aana chaiye
+================================================
+
+
+DECIMAL TO ANYBASE -> we can go anywhere from decimal to anybase (because decimal is reference when we do the  division with anybase the remainder lies bewtween the digit by which we are dividing)
+
+
+================================================
+
+ANYBASE TO ANYBASE -> first convert it into anybase to decimal and then convert -> to decimal to anybase
+
+use 2 function abtd and dtab and 2nd way to run this through piping
+
+piping-> means isko hum terminal me run krte hai 
+1) compile both files which are required(1st file me input uthalege and 2nd ka base read krlege)
+2)to run -> java abtd < input.txt | jiska input next file me through krna hai dtab > output.txt
+java abtd.java < input.txt | dtab.java > output.txt
+================================================
