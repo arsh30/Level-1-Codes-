@@ -1,0 +1,61 @@
+29 december arrays
+
+1)what is Arrays?
+sol) Arrays is a collection of similar dataTypes and it is contagious memory
+
+2) Why use Arrays?
+sol) because if we want to store 100 data, the traditional way is to store 100 data is to create variables like int a, int b, int c , int 1
+,etc.So Array gives us the concept, that dont take the tension about memory, make 1 continous memory. jtne bde size ka data chahiye utne
+bde size ka chunk of memeory create krlo or unko divide krlo 4 bytes me. so har box me data hota hai
+
+3)Length of Array?
+sol) 0 to n - 1 always
+
+4)how to declare the array?
+sol) int[] arr = new int[n];  //where n is the size -> in java , by default value is 0, it decide run time memeory
+//heap pr bnta yeh
+
+5) how to access the array?
+sol) arr[3] = means we will the data of the 3 rd element
+
+6) how to take input of array in java?
+sol) for (int i = 0; i < n; i++) { //input take
+            arr[i] = scn.nextInt();
+        }
+7) how to print the output of array in java?
+sol)  for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");  //but output hm ik function likh kr krege
+        }
+
+        or
+
+    public static void display(int[] arr) { //array pass kra reference pass hota hai means exact copy
+        for (int i = 0; i < arr.length; i++) { //arr.length -> java function to find length
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+STEPS TO REMEMBER:
+1 int maxEle = -(int) 1e9; /*
+                                  * when find the maximum then used - (int)1e9 because in dp people use
+                                  * INTEGER.MAX() maximum but jab isme + 1 krte hai toh round hokr sbse negative
+                                  * miljati hai so overcome from this mistake we use this 1e9 only in maximum
+                                  * function
+                                  */
+2 FOREACH LOOP -> for (int ele : arr) { /* foreach loop -> it only moves forward by step by step and it only gets the
+                               value and agar hmko position chahiye toh we write normal for loop*/
+
+
+============================================================================
+VERY VERY IMPORTANT-> 1) Array is inplace means jo niche se array aata hai vor refrence hota hai agar jo array me change krte hai vo pura array change hota hai
+2) array kabhi bhi print nahi krte always return the array.many people thinks that the inplace means  do the ques without extra space 
+but which is wrong
+
+3)inplace Definition: -> means jo input diya hai usi me work krenge(take extra space or not only depend on us) and output bhi jo given arrayy hai vohi denege
+
+4)Arrays always return array or jo input array hota hai usme change bhi allowed nahi hote krne.
+
+====================================================================
+
+Inbuilt function in Arrays-> 1) to find length -> use: arr.length;
+
