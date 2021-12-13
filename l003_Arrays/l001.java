@@ -122,6 +122,158 @@ public class l001 {
         }
     }
 
+    // 30th dec
+    // ques1->
+    public static void addTwoArrays_01(int[] a, int[] b) {
+        int n = a.length, m = b.length;
+        int[] ans = new int[Math.max(n, m) + 1];
+
+        int i = n - 1, j = m - 1, k = ans.length - 1;
+        int carry = 0;
+        while (k >= 0) {
+            // int sum = carry + a[i] + b[j]; // agar normal aise add krege or jb dono me se
+            // koi number chota hogya toh j
+            // ki value negative me aa skti hai so if case case se handle krege ki 0 toh
+            // nahi toh hi add krege
+            int sum = carry;
+            if (i >= 0)
+                sum += a[i--];
+            if (j >= 0)
+                sum += b[j--];
+            // int sum = carry + (i >= 0 ? a[i--] : 0) + (j >= 0 ? b[j--] : 0);
+            ans[k--] = sum % 10;
+            carry = sum / 10;
+        }
+        // handle case agar starting me 0 hoye toh like 000001000
+        for (int l = 0; l < ans.length; l++) {
+            if (l == 0 && ans[l] == 0)
+                continue;
+            System.out.println(ans[l]);
+        }
+    }
+
+    // repeat
+    // public static void addTwoArrays(int[] a, int[] b) {
+    // int n = a.length, m = b.length;
+    // int[] ans = new int[Math.max(n, m) + 1];
+
+    // int i = n - 1, j = m - 1, k = ans.length - 1;
+    // int carry = 0;
+    // while (k >= 0) {
+    // int sum = carry;
+    // if (i >= 0)
+    // sum += a[i--];
+    // if (j >= 0)
+    // sum += b[j--];
+    // // int sum = carry + (i >= 0 ? a[i--] : 0) + (j >= 0 ? b[j--] : 0);
+
+    // ans[k--] = sum % 10;
+    // carry = sum / 10;
+    // }
+
+    // for (int l = 0; l < ans.length; l++) {
+    // if (l == 0 && ans[l] == 0)
+    // continue;
+    // System.out.println(ans[l]);
+    // }
+    // }
+
+    public static void subtractTwoArrays(int[] a, int[] b) {
+        int n = a.length, m = b.length;
+        int[] ans = new int[Math.max(n, m)];
+
+        int i = n - 1, j = m - 1, k = ans.length - 1;
+        int borrow = 0;
+        while (k >= 0) {
+            int sum = borrow + (j >= 0 ? b[j--] : 0) - (i >= 0 ? a[i--] : 0);
+            // ans[k--] = sum % 10;.yeh krne ki need nhi h kyoki kabhi aisa hoega hi nahi
+            // borrow = sum / 10;
+            if (sum < 0) {
+                sum += 10;
+                borrow = -1;
+            } else
+                borrow = 0;
+
+            ans[k--] = sum;
+        }
+        // handle case agar starting me 0 hoye toh like 000001000
+        // for (int l = 0; l < ans.length; l++) {
+        // // if (l == 0 && ans[l] == 0) yeh kabhi hoega hi nahi
+        // // continue;
+        // System.out.println(ans[l]);
+        // }
+        boolean is_You_Find_A_Non_Zero_Number = false;
+        for (int l = 0; l < ans.length; l++) { // leadig 0 ko rokre h
+            if (!is_You_Find_A_Non_Zero_Number && ans[l] == 0)
+                continue;
+            is_You_Find_A_Non_Zero_Number = true;
+            System.out.println(ans[l]);
+        }
+    }
+
+    // subarray-> total subarrays- > n * n + 1/ 2;
+    public static void subArray(int[] arr) { // it require 3 loop
+        for (int i = 0; i < arr.length; i++) { // this outer loop travels on the main array
+            for (int j = i; j < arr.length; j++) { // goes till the ending point of the array,and only with these 2 loop
+                                                   // it print the array
+
+                for (int k = i; k <= j; k++) {
+                    System.out.print(arr[k] + "\t");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // OR 2ND APPRACH SUBARRAY
+    public static void subArray_01(int[] arr) { // it require 3 loop
+        for (int sp = 0; sp < arr.length; sp++) { // 0-0,0-1,0-2,0-3 (LHS is sp loop , RHS is ep loop)
+            for (int ep = sp; ep < arr.length; ep++) { // RHS value loop ie ending point. these 2 loop print the array
+                                                       // only
+                for (int i = sp; i <= ep; i++) { // travel the loop and print the array from starting to ending point
+                    System.out.print(arr[i] + "\t");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // extra ques -> solve the queries problem
+    public static int[] prefixSumArray(int[] arr) {
+        int[] psum = new int[arr.length + 1]; // 1size bda bnaya or by default in array is 0
+        for (int i = 0; i < arr.length; i++) {
+            // creae the psum array
+            psum[i + 1] = psum[i] + arr[i];
+        }
+        return psum;
+    }
+
+    public static void resolveQuery() { // above function is helper function means jo cheze create krri hai idr se krri
+                                        // hai
+        // taking input of the given array
+        int n = scn.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = scn.nextInt();
+        }
+
+        // call the main function
+        int[] psum = prefixSumArray(arr); // note kuch initialise krne ke liye new nhi krna pdhta
+
+        // taking input of the queries
+        int q = scn.nextInt();
+
+        while (q-- > 0) {
+            int si = scn.nextInt();
+            int ei = scn.nextInt();
+
+            System.out.println(psum[ei + 1] - psum[si]); // eg like our psum array is starts with 0 and jo main array
+                                                         // hai uska sum 1 aage hi hoga psum ke and calculate krenge
+
+        }
+
+    }
+
     public static void display(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
@@ -145,3 +297,8 @@ public class l001 {
         // test1();
     }
 }
+
+/*
+ * TIME COMPLEXITIES OF ARRAY AND IMPORTANT TERMS
+ * 
+ */
