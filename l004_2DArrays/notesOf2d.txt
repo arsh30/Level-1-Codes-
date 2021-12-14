@@ -1,0 +1,19 @@
+2D arrays are the Matrix. in real world the 2d thing doesnot exist.Only exist the 1d but inside the 1d 1more matrix is present 
+syso(arr)-> output main address
+syso(Arr[1]) -> give the address of the elements at 1st row
+
+how to access the main element -> arr[2][1];  //2nd row 1st column
+
+//HOW TO DECLARE 2D ARRAY 
+int[][] arr= new int[n][m];  //n * m size matrix , where n is row and m is column
+
+in cpp -> vector<vector<int>> arr(n,vector<int>(m,0)); isko typedef krke shot synatx bhi kr skte hai
+
+//HOW TO TAKE INPUT OF 2D ARRAYS IN JAVA
+using 2 for loop
+  for (int i = 0; i < n; i++) { // for rows
+            for (int j = 0; j < m; j++) { // for columns loop
+                arr[i][j] = scn.nextInt();
+            }
+        }
+

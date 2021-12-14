@@ -1,0 +1,6 @@
+Arrays Class ->
+1)Arrays.binarySearch()
+
+
+Time complexity of Array->
+
