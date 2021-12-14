@@ -16,4 +16,5 @@ using 2 for loop
                 arr[i][j] = scn.nextInt();
             }
         }
+  // NOTE:-> if we want to access the last index -> do ar.length - 1;
 

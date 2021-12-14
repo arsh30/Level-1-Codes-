@@ -178,6 +178,112 @@ public class l001 {
         }
     }
 
+    // ===========================
+    // 2ndJan ->
+
+    /*
+     * ques1->EXIT POINT OF A MATRIX
+     * 1) exit point of matrix-> wherever we get the 1 take the right turn from
+     * there if it shows 1 means it goes straight.
+     * 2)e have to specify(batana) the index where we exited (ho chuka) the matrix
+     */
+    public static void exitPointOfMatrix(int[][] arr) { // to access values -> eg:arr[1][3] = 3
+        int r = 0, c = 0, dir = 0; // do this with the direction loop
+        while (true) { // true means infinite loop
+            dir = (dir + arr[r][c]) % 4;
+            if (dir == 0) { // move , assume right - 0, down - 1, left- 2, up - 3
+                c++; // when we move right the values of c is always increase
+                // now find the break point
+                if (c == arr[0].length) {
+                    System.out.println(r); // output format first print row then column
+                    System.out.println(c - 1);
+                    break;
+                }
+            } else if (dir == 1) { // move down
+                r++;
+                if (r == arr.length) {
+                    System.out.println(r - 1); // jo last point hoga usse ik pehele
+                    System.out.println(c);
+                    break;
+                }
+
+            } else if (dir == 2) { // move right
+                c--;
+                if (c == -1) { // means 0 tak valid hai jb use upr jaegi ie in negative then hm add krege + 1
+                               // to access the element at 0 index
+                    System.out.println(r);
+                    System.out.println(c + 1);
+                    break;
+                }
+
+            } else { // d = 3 move up means
+                r--;
+                if (r == -1) {
+                    System.out.println(r + 1);
+                    System.out.println(c);
+                    break;
+                }
+            }
+
+        }
+    }
+
+    public static void spiralDisplay(int[][] arr) {
+        // think this by box by box, take 4 variable rmin rmax, cmin,cmax. means jb hmko
+        // yeh pta hoga ki kidr se kidr tak jana then we can print the box
+        int n = arr.length, m = arr[0].length;
+        int tne = n * m; // means we cant travel any element more than once
+        int rmin = 0, rmax = n - 1, cmin = 0, cmax = m - 1;
+        while (tne > 0) { // note use while loop -> when we dont know the actual condition ki kab rukega
+            // left wall
+            for (int i = rmin; i <= rmax && tne > 0; i++) {
+                tne--;
+                System.out.println(arr[i][cmin]);
+            }
+            cmin++;
+            // bottom wall
+            for (int i = cmin; i <= cmax && tne > 0; i++) {
+                tne--;
+                System.out.println(arr[rmax][i]);
+            }
+            rmax--;
+            // right wall
+            for (int i = rmax; i >= rmin && tne > 0; i--) {
+                tne--;
+                System.out.println(arr[i][cmax]);
+            }
+            cmax--;
+            // top wall
+            for (int i = cmax; i >= cmin && tne > 0; i--) {
+                tne--;
+                System.out.println(arr[rmin][i]);
+            }
+            rmin++;
+        }
+    }
+
+    public static void searchin2d(int[][] arr, int data) {
+        int i = 0, j = arr[0].length - 1; // means start from the top right corner of 0th row
+        while (i < arr.length && j >= 0) {
+            /*
+             * 2 possiblities:
+             * 1) if data is greater than elements goes downward
+             * 2) if data is smaller than elements goes left side
+             */
+
+            if (data == arr[i][j]) {
+                System.out.println(i); // print only address
+                System.out.println(j);
+                return;
+            } else if (data < arr[i][j]) { // arr[i][j] are elements
+                j--;
+            } else {
+                i++;
+            }
+        }
+        System.out.println("Not Found");
+    }
+
     public static void main(String[] args) {
         int n = scn.nextInt();
         int m = scn.nextInt();
@@ -185,7 +291,8 @@ public class l001 {
         input(arr);
         // waveTraversalLeftRight(arr);
         // waveTraversalUpAndDown(arr);
-        diagonalTraversal(arr);
+        // diagonalTraversal(arr);
+        exitPointOfMatrix(arr);
         // rotate90(arr);
         // display(arr);
     }
