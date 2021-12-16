@@ -81,9 +81,10 @@ public class l001 {
      * 
      */
     public static String stringCompression1(String str) {
-        StringBuilder sb = new StringBuilder(); //use string builder because normal string immutable we can not change
-        //so here jo string given hai usme change krna hai thatswhy we use STRING BUILDER
-        //Time complexity of append is O(1) while in normal string it is O(N)
+        StringBuilder sb = new StringBuilder(); // use string builder because normal string immutable we can not change
+        // so here jo string given hai usme change krna hai thatswhy we use STRING
+        // BUILDER
+        // Time complexity of append is O(1) while in normal string it is O(N)
 
         sb.append(str.charAt(0)); // -> store the first element
         for (int i = 1; i <= str.length(); i++) { // because probab of 2 has happening at the end
@@ -133,8 +134,8 @@ public class l001 {
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
             if (ch >= 'a' && ch <= 'z') {
-                //means character is in small case convert to upper
-                sb.append((char)(ch + 'A' - 'a'));
+                // means character is in small case convert to upper
+                sb.append((char) (ch + 'A' - 'a'));
             } else {
                 sb.append((char) (ch - 'A' + 'a'));
             }
