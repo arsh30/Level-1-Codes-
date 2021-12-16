@@ -1,0 +1,51 @@
+Jan 04 -> String
+String is character of Array instead of no they have character, (so use single '');
+
+*****FUNCTION IN JAVA*******
+
+* if we want to same feel like array in string,  use STRING_BUILDER
+1) StringBuilder sb = new StringBuilder();  //declare and we can the pass the string in this also
+function of StringBuilder
+
+1)get -> sb.charAt(i);
+2)set -> sb.setCharAt(i);  //i is the index
+3)find length -> sb.length();
+4)add -> sb.append("abc");  //it add in the last in O(1), total TC is length of String(ie O(m));
+*********************************
+B) JAVA -> ArrayList FUNCTIONS================
+ArrayList<Integer> al = new ArrayList<>();
+1)add -> al.add(10);
+2)get -> al.get(i);
+3)set -> al.set(idx,value(which want to set)
+4)size -> al.size();
+*********************************************
+
+C) *********STRING*************
+[Note: Normal String and StringBuilder both are different]
+
+1)initialise -> String str = " ";
+2)to access character -> char ch = str.charAt(idx);
+3)to find length -> str.length();
+4)substring -> str.substring(startindex,endding_index) formula -> (si ,ei + 1)
+=================================================================
+
+*****FUNCTION IN CPP*******
+1)string str = "abc" ; //initialse the string
+2)get -> str[i];
+3)set -> str[i] = 'f';  //RHS means jo character add krna hai
+4)size -> str.length();
+5) add -> str += "abc" -> time complexity is O(1) or O(m) length of String (useful)
+6) add -> str = str + "abc" -> time complexity is O(n + m) means this add the previous string as well as the new string which will be created
+7) substring -> str.substr(si,len); where len  is ei + 1 - si 
+ eg: abcdefghi cut the substring of 2,4 => 2, 5 +1-2 = 2,4 (means 2 se 3 length ki substring cut hogi)
+
+*********************************
+B) CPP -> EXTRA FUNCTIONS================
+vector<int> arr;
+1)add -> arr.push_back(10);
+2)get -> arr[i];
+3)set -> arr[i] = 10;
+
+
+
+
