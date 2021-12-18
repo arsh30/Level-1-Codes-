@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class l001 {
     public static Scanner scn = new Scanner(System.in);
@@ -143,8 +145,117 @@ public class l001 {
         return sb.toString();
     }
 
+    // 5th JAN
+    // Ques6->Difference of every 2 consequteive integer
+    public static String solution(String str) {
+        // note -> whenever you feel that 0 will became the part of the answer then we
+        // must have to add the base case
+        if (str.length() <= 1)
+            return str;
+
+        StringBuilder sb = new StringBuilder(); // operations STRINGBUILDERR ->
+        // 1) sb.charAt(i); 2) sb.setCharAt(i,'char') 3) sb.length(); sb.dppend("abc")
+        // -> TC O(1);
+
+        sb.append(str.charAt(0));
+        for (int i = 1; i < str.length(); i++) {
+            char ch0 = str.charAt(i - 1); // normalString functions -> str.charAt(i) 2) substring formula (si,ei+1) in
+                                          // terms of index , in terms of length (si,si + len) where len is ei + 1 - si
+            char ch1 = str.charAt(i);
+
+            sb.append(ch1 - ch0); // ASCII
+            sb.append(ch1);
+        }
+
+        return sb.toString(); // toString because we have to return the string and stringBuilder character of
+                              // Array
+    }
+
+    // que7 -> Subsequence -> means each character have 2 choices whether it comes
+    // or not (formula 2 rtp n)
+    public static ArrayList<String> subseq(String str) {
+        // functions of ArrayList -> 1) add -> al.add(10); 2)get -> al.get(i), 3) set ->
+        // al.set(idx,value) ,4) size -> al.size();
+        // [Note] -> we can do this ques by recursion as well as iterative so this is
+        // iterative, means jo add krege usi ko traverse krke add krlege
+        ArrayList<String> ans = new ArrayList<>();
+        ans.add("");
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i); // [pass index]
+            int size = ans.size();
+            for (int j = 0; j < size; j++) {
+                ans.add(ans.get(j) + ch); // doubt
+            }
+        }
+        return ans;
+    }
+
+    //myApproach
+    public static ArrayList<String> subseq_01(String str) {  
+        ArrayList<String> ans = new ArrayList<>();
+        ans.add("");
+        ArrayList<String> myAns = new ArrayList<>();
+        for (int i = 0; i < str.length(); i++) {
+          char ch = str.charAt(i);
+          for (String s : ans) {
+            myAns.add(s);
+            myAns.add(ch + s);  
+          }
+        }
+        return myAns;
+      }
+    //Note Char + String = string
+
+    //ques8 -> permutaions of Strings
+     public static void solution(String str) {
+    // write your code here
+    ArrayList<String> ans = new ArrayList<>();
+    ans.add("");
+
+    for (int i = 0; i < str.length(); i++) {
+      char ch = str.charAt(i);
+      ArrayList<String> myAns = new ArrayList<>();
+
+      for (String s : ans) { //travel on the ans array
+        for (int j = 0; j <= s.length(); j++) { //travel on the first string
+        myAns.add(s.substring(0,j) + ch + s.substring(j));
+        }
+      }
+      ans = myAns;  //ans ke andr myaAns put krdiya
+    }
+   System.out.println(ans);
+  }
+  public static boolean isPrime(int num) {
+    for (int i = 2; i * i <= num; i++) {
+      if (num % i == 0)
+        return false;
+    }
+    return true;
+  }
+
+  //ques9 -> Not prime
+  public static void solution(ArrayList<Integer> al) {
+    // write your code here
+    ArrayList<Integer> ans = new ArrayList<>();
+    //because we have to do the multiple delete operations, so time complexity of one element deleted is o(n);
+    for (int ele : al) {
+      if (!isPrime(ele))
+        ans.add(ele);
+    }
+    al.clear();  //because we have to clear the arrayList,becuase it have elements
+    for (int ele : ans) {
+      al.add(ele);
+    }
+  }
+
+  //ques10 -> extra ques SOLVE QUERIES
+  
+
     public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
         String str = scn.next(); // taking input next or nextLine()
+        solution(str);
         getAllPalindromicSubstrings(str);
     }
 }
