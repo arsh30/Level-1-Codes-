@@ -1,0 +1,25 @@
+RECURSION -> Thinks about 3 things: 1) Faith (it is like PMI)jisme n hota hai and then n ke liye prove krte the
+            then assume (n + 1)is true, and then prove that (n + 1) is true;
+
+            2)Make Tree Diagram or stack Diagram[stack Diagram is used when there is a single call]
+            3) Dry Run
+            4) then Code
+
+eg: (a,b) print in this range: a = 1, b = 10;
+
+Faith: (agar hm bolre hai ki spiderman to spiderman prove krege hm)
+  public static void printIncreasing(int a, int b) {
+      if(a == b + 1) return;
+    System.out.println("hi" + a);
+    printIncreasing(a + 1, b); faith: jo lenge hm vo nearest number ka lenge eg: print a to 10; so print a + 1 is faith
+  }
+
+  jo faith liya then usko desired output me convert krege
+
+RECURSION is the function calling itself again and again.Base case always come in starting.
+Backtrack jo hota h vo 2 types se hota 1) return 2) '}'
+
+*->Each function is different. do the stack diagram with p pp ppp.....
+
+[Note: jb base case hit hoega tb recursive call udr hi stop hojegi and niche ki lines execute hongi: Do recursion with stack diagram and when multiple draw tree diagram]
+
