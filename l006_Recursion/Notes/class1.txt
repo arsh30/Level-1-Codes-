@@ -23,3 +23,11 @@ Backtrack jo hota h vo 2 types se hota 1) return 2) '}'
 
 [Note: jb base case hit hoega tb recursive call udr hi stop hojegi and niche ki lines execute hongi: Do recursion with stack diagram and when multiple draw tree diagram]
 
+
+
+============================================================
+TIME COMPLEXITY FORMULAES
+jbhi 1 call hai make stack, when there is 2 call make tree diagram
+
+1) k is always log(base 2) (n) + 1
+2)

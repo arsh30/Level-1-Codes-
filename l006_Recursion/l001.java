@@ -105,11 +105,12 @@ public class l001 {
 
   //ques5 ->
   public static int factorial_(int n) {
-    if (n == 0) return 1; //0! ie 1[base case]
+    if (n == 0) return 1; //0! ie 1[base case]  -> tc o(1)
 
-    int recAns = factorial(n - 1);
+    int recAns = factorial(n - 1); // tc -> (t(n-1))
 
-    return n * recAns;
+    return n * recAns; //o(1)
+    // t(n)= 2n + 1 in term of O(n);
   }
 
   public static int factorial(int n) {
@@ -118,6 +119,33 @@ public class l001 {
     return (n == 0) ? 1 : n * factorial(n - 1);
   }
 
+  //class 2===========================================================
+
+  //ques1->
+  public static int power(int a, int b) { //this take a lot of TC Eg if b is 10 ^9 so ine operations perform honge
+    // return (int)Math.pow(x,n);
+    return (b == 0) ? 1 : power(a, b - 1) * a;
+  }
+
+  //ALTERNATE BETTER APPROACH
+  public static int power_(int a, int b) {
+    // formula eg (a,b) => a , (b / 2) * (b / 2) => a,b but handle odd even cases
+    if (b == 0) {
+      return 1;
+    }
+    int smallAns = power(a, b / 2); //faith
+    smallAns *= smallAns;
+    return b % 2 == 0 ? smallAns : smallAns * a; //even : odd
+  }
+
+  public static int powerBtr2(int a, int b) {
+    if (b == 0) return 1;
+    int smallAns = powerBtr2(a, b / 2) * powerBtr2(a, b / 2);
+    return b % 2 == 0 ? smallAns : smallAns * a;
+  }
+
+  //ques2 -> fibonacci
+  
   public static void main(String[] args) {
     // int a = scn.nextInt();
     int n = scn.nextInt();
