@@ -104,6 +104,19 @@ public class l001 {
   }
 
   //ques5 ->
+  public static int factorial_(int n) {
+    if (n == 0) return 1; //0! ie 1[base case]
+
+    int recAns = factorial(n - 1);
+
+    return n * recAns;
+  }
+
+  public static int factorial(int n) {
+    //time complexity -> 2n (ek baar upr jaate and baar niche aate)
+    // har element kitni baar visit hora hai
+    return (n == 0) ? 1 : n * factorial(n - 1);
+  }
 
   public static void main(String[] args) {
     // int a = scn.nextInt();
@@ -111,6 +124,7 @@ public class l001 {
     // printIncreasing(a, b);
     // p(a);
     // pdi(n);
-    pdiOddEven(n);
+    // pdiOddEven(n);
+    System.out.println(factorial_(n));
   }
 }
