@@ -127,7 +127,7 @@ public class l001 {
     return (b == 0) ? 1 : power(a, b - 1) * a;
   }
 
-  //ALTERNATE BETTER APPROACH
+  //ques2-> ALTERNATE BETTER APPROACH
   public static int power_(int a, int b) {
     // formula eg (a,b) => a , (b / 2) * (b / 2) => a,b but handle odd even cases
     if (b == 0) {
@@ -144,8 +144,57 @@ public class l001 {
     return b % 2 == 0 ? smallAns : smallAns * a;
   }
 
-  //ques2 -> fibonacci
-  
+  //ques3 -> fibonacci
+  public static int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+
+  //ques4 -> tribonacci 1137
+  public int tribonacci(int n) {
+    if (n <= 2) return n == 2 ? 1 : n;
+
+    return tribonacci(n - 1) + tribonacci(n - 2) + tribonacci(n - 3);
+  }
+
+  //RECURSION WITH ARRAY
+  // ques 1->
+  public static void displayArr(int[] arr, int idx, int n) {
+    // think print in increasing order number range 0 to n
+    if (idx == n) return;
+    System.out.println(arr[idx]);
+    displayArr(arr, idx + 1, n);
+  }
+
+  //ques2->
+  public static void displayArrReverse(int[] arr, int idx, int n) {
+    // think print in Decreasing number
+    if (idx == n) return;
+    displayArrReverse(arr, idx + 1, n);
+    System.out.println(arr[idx]);
+  }
+
+  //ques3->
+  public static int maxOfArray(int[] arr, int idx) {
+    if (idx == arr.length) return -(int) 1e9; //element mila hi nhi
+
+    return Math.max(arr[idx], maxOfArray(arr, idx + 1)); //faith: 1 se end tak miljaega max then we compare with the 0 th index
+  }
+
+  //ques4->
+  public static int firstIndex(int[] arr, int idx, int x, int n) {
+    if (idx == n) return -1;
+    if (arr[idx] == x) return idx;
+    return firstIndex(arr, idx + 1, x, n);
+  }
+
+  //ques5->
+  public static int lastIndex(int[] arr, int idx, int x, int n) {
+    if (idx == -1) return -1;
+    if (arr[idx] == x) return idx;
+    return lastIndex(arr, idx - 1, x, n); //means loop starts from the end
+  }
+
   public static void main(String[] args) {
     // int a = scn.nextInt();
     int n = scn.nextInt();
