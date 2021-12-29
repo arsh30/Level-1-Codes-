@@ -219,6 +219,23 @@ public class l001 {
     reverseArray(arr, si + 1, ei - 1); //faith-> middle se reverse hojega
   }
 
+  //ques3 ->
+  /* 
+    recursion -> stack has power that we can make our answer in 2 ways
+    1) upr jate hoye -> kisi cheez me store krle
+    2) niche aate hoye -> return krle ie called backTracking
+    3) do backTrack with p,pp,ppp,.....
+  */
+
+  public static void inverseArray(int[] arr, int idx) {
+    if (idx == arr.length) return;
+
+    int val = arr[idx]; //upr jate hoye value store krli ussi array me, hr jgh hmare stack ki space pr val pdha h
+    inverseArray(arr, idx + 1); //faith -> 1se pura array reverse mil jaega jo iss call ke niche hoga ie back track
+
+    arr[val] = idx; //jo array tha vo change krdiya 1st index ko value pr store kra
+  }
+
   public static void main(String[] args) {
     // int a = scn.nextInt();
     int n = scn.nextInt();
