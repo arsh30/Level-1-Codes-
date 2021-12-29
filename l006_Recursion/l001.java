@@ -195,6 +195,30 @@ public class l001 {
     return lastIndex(arr, idx - 1, x, n); //means loop starts from the end
   }
 
+  // CLASS 2 ================================================================================
+
+  //ques1 -> is palindrome
+  public static boolean isPalindrome(int[] arr, int si, int ei) {
+    if (si >= ei) return true;
+
+    if (arr[si] != arr[ei]) return false;
+    return isPalindrome(arr, si + 1, ei + 1);
+  }
+
+  //ques 2 ->
+  public static void swap(int[] arr, int si, int ei) {
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+
+  public static void reverseArray(int[] arr, int si, int ei) {
+    if (si >= ei) return;
+
+    swap(arr, si, ei); //swap 1st and last index
+    reverseArray(arr, si + 1, ei - 1); //faith-> middle se reverse hojega
+  }
+
   public static void main(String[] args) {
     // int a = scn.nextInt();
     int n = scn.nextInt();
@@ -202,6 +226,15 @@ public class l001 {
     // p(a);
     // pdi(n);
     // pdiOddEven(n);
-    System.out.println(factorial_(n));
+    // System.out.println(factorial_(n));
+    int[] arr = new int[n];
+    for (int i = 0; i < arr.length; i++) {
+      arr[i] = scn.nextInt();
+    }
+    isPalindrome(arr, 0, arr.length - 1);
+
+    for (int ele : arr) {
+      System.out.println(ele);
+    }
   }
 }
