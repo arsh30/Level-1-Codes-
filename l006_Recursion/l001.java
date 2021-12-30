@@ -207,9 +207,9 @@ public class l001 {
 
   //ques 2 ->
   public static void swap(int[] arr, int si, int ei) {
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+    int temp = arr[si];
+    arr[si] = arr[ei];
+    arr[ei] = temp;
   }
 
   public static void reverseArray(int[] arr, int si, int ei) {
@@ -223,7 +223,7 @@ public class l001 {
   /* 
     recursion -> stack has power that we can make our answer in 2 ways
     1) upr jate hoye -> kisi cheez me store krle
-    2) niche aate hoye -> return krle ie called backTracking
+    2) niche aate hoye -> return krle ie called backTracking (means call ke niche work hua h)
     3) do backTrack with p,pp,ppp,.....
   */
 
@@ -232,26 +232,159 @@ public class l001 {
 
     int val = arr[idx]; //upr jate hoye value store krli ussi array me, hr jgh hmare stack ki space pr val pdha h
     inverseArray(arr, idx + 1); //faith -> 1se pura array reverse mil jaega jo iss call ke niche hoga ie back track
-
+    //har function alg alg h
     arr[val] = idx; //jo array tha vo change krdiya 1st index ko value pr store kra
   }
 
+  //practice -> to use of return type ques
+  public static int[] inverseArray_returnType_practice(int[] arr, int idx) {
+    if (idx == arr.length) return arr; //agar aise parameter to jo array given hai voi return krdo ya
+    // new array better is to make a new , isse hm original me change krke ussi ko return krre hai
+
+    int val = arr[idx];
+
+    int[] ar = inverseArray_returnType_practice(arr, idx + 1); //2nd step is to catch that in the given return type
+
+    arr[val] = idx;
+    return ar;
+  }
+
+  // =======================================================================================
+  // class 4 ie 13 th ques1 ->
+  public static int sumOfDigit(String str, int idx) {
+    //eg: 1234
+    if (idx == str.length()) return 0;
+
+    int recAns = sumOfDigit(str, idx + 1); // we get sum of 234
+    return recAns + str.charAt(idx) - '0'; //to covert it in char 'X' - 'x' = integer
+  }
+
+  // ques2 ->
+  public static long stringToNumber(String str, int idx, long pow) {
+    // loop starts from backword because agar front se start krege toh hmko power function use krna pdhega
+
+    if (idx == -1) {
+      return 0;
+    }
+
+    long recAns = stringToNumber(str, idx - 1, pow * 10); //upr jare hai idr se and we create the power,loop piche se chlaya
+
+    return recAns + (str.charAt(idx) - '0') * pow;
+  }
+
+  //ques3 ->
+  public static boolean checkReverse(String s1, int idx1, String s2, int idx2) {
+    // [NOTE -> JB dry run krege toh dono string lekr krege and jb code likhe specially recursion ke toh hum index ke term me likhege
+    if (idx2 == -1) return true;
+    //faith: abcd(idx1 on a) , dcba ((idx2 on a) agar dono equal to sahi hai)
+    if (s1.length() == s2.length()) {
+      if (s1.charAt(idx1) != s2.charAt(idx2)) return false;
+      return checkReverse(s1, idx1 + 1, s2, idx2 - 1);
+    } else {
+      System.out.println("false");
+    }
+  }
+
+  //ques4 -> palindrome ofString [use this by difference method]
+  public static boolean palidromeOfString(String str, int i, int j) {
+   if( i >= j) return true;
+    // 1st hmne dono character nikal liye['B' and 'b' are same that why we do this by diff]
+    char ch1 = str.charAt(i);
+    char ch2 = str.charAt(j);
+
+    int diff1 = (ch1 >= 'A' && ch1 <= 'Z') ? ch1 - 'A' : ch1 - 'a';
+    int diff2 = (ch2 >= 'A' && ch2 <= 'Z') ? ch2 - 'A' : ch2 - 'a';
+
+    if(diff1 != diff2) return false;
+    return palidromeOfString(str,i + 1, j - 1;)
+  }
+
+  //ques4->seperate duplicates[extra ques]
+  /*[NOTE IMPORTANT -> Jbhi hm ques krte hai recursion me jo string hoti hai unko hum always idx ki approach se krege[in code]
+                    and dry run ke time pr hm stack me dono string lekr krege  ]
+  */
+
+  public static String seprateDuplicate_wayDown(String str) {
+    //jidr bhi 2 same conseqetive character milege to unke bich me * append krwadenege
+    if(str.length() == 1) return "";  //"" nhi kr skte becuase agar kra to we get a null point exception
+    //  empty string result catch krega index exist hi nhi krta
+
+
+    char ch = str.charAt(0);
+    String ros = str.substring(1);  //1se end tak ki string bhjdi
+    
+    String result = seprateDuplicate(ros);  //faith
+    //verify 1st and last charact
+    if(ch != result.charAt(0))
+    return ch + result;
+    else return ch + "*" + result;
+
+   /* [note: return type recursion mostly used in dp important isko kisi variable
+    me catch krna neccessary h coz use hm niche use krte hai]*/
+  }
+
+  public static void seperateDuplaicates_wayup(String str,int idx, String ans) {
+    /* [note: return type recursion mostly used in dp important isko kisi variable
+    me catch krna neccessary h coz use hm niche use krte hai]*/
+    if(idx == str.length()-1){
+      System.out.println(ans + str.charAt(str.length() - 1));
+      return;
+    }
+
+    //note: way up is more easier than return type recursion and it is usefull in graph
+
+    char ch = str.charAt(idx);
+    
+    //kuch add krege upr jate hoye -> toh  better to make new string agr bina extra space krna hota to we use linked list
+    if(idx == str.charAt(idx + 1)){
+      seperateDuplaicates_wayup(str,idx+1,ans+ch + "*");
+    }else 
+    seperateDuplaicates_wayup(str,idx+1,ans+ch);
+
+  }
+
+  //ques5->
+  public static void removeAdjacentDuplicates_wayup(String str,int idx ,String ans) {
+    /*
+    WayUp -> isme hme ik "answer" name ki string lenge because we have to make our answer when we going upward so usko kahin store krlege
+    2)isme idx bhi le skte
+    */
+    if(idx == str.length() - 1){
+      System.out.println(ans + str.charAt(idx));
+      return;
+    }
+
+    char ch = str.charAt(idx);
+    if(ch != str.charAt(idx + 1))
+      removeAdjacentDuplicates_wayup(str,idx+1,ans+ ch);
+    else
+      removeAdjacentDuplicates_wayup(str,idx + 1,ans);
+
+  }
+
+  public static String removeAdjacentDuplicates(String str) {
+    if(str.length() == 1)
+    return str;
+
+    char ch = str.charAt(0);
+    String ros = str.substring(1);
+
+    String result = removeAdjacentDuplicates(ros);
+    if(ch != result.charAt(0)) return ch +result;
+    return result;    
+  }
+
+
   public static void main(String[] args) {
     // int a = scn.nextInt();
-    int n = scn.nextInt();
+    // int n = scn.nextInt();
     // printIncreasing(a, b);
     // p(a);
     // pdi(n);
     // pdiOddEven(n);
     // System.out.println(factorial_(n));
-    int[] arr = new int[n];
-    for (int i = 0; i < arr.length; i++) {
-      arr[i] = scn.nextInt();
-    }
-    isPalindrome(arr, 0, arr.length - 1);
-
-    for (int ele : arr) {
-      System.out.println(ele);
-    }
+    String str = scn.next();
+    int div = scn.nextInt();
+    System.out.println(stringToNumber(str, str.length() - 1, 1) / div);
   }
 }
