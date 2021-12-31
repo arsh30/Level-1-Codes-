@@ -353,7 +353,6 @@ public class l001 {
       System.out.println(ans + str.charAt(idx));
       return;
     }
-
     char ch = str.charAt(idx);
     if(ch != str.charAt(idx + 1))
       removeAdjacentDuplicates_wayup(str,idx+1,ans+ ch);
@@ -374,6 +373,12 @@ public class l001 {
     return result;    
   }
 
+  // =======================================================================================
+    //ques1->
+   // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-22movecharacters/problem
+ 
+//  ques2->
+  // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-23countorremovehi
 
   public static void main(String[] args) {
     // int a = scn.nextInt();
