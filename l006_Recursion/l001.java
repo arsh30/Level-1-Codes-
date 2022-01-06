@@ -379,7 +379,48 @@ public class l001 {
  
 //  ques2->
   // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-23countorremovehi
-
+   public static int countAllHi(String str,int idx) {
+        
+        if(idx >= str.length() - 1){  //means hm end tak chle gye ie 11 index so we will not hi from there 
+            return 0;
+        }
+        String s = str.substring(idx,idx+2);  //take 2 substring only at one time
+        // if(str == s) never do this compare in string because it compare adress so use ".equals"
+          if(s.equals("hi")){
+              return countAllHi(str,idx+2) + 1;  //+1 kyoki hm khud bhi hii the
+          } else {
+               return countAllHi(str,idx+1); //because 1st charact is not start with "i" 
+          }
+    }
+    
+    public static void countAllHi(String str,int idx,String ans) {
+        //way up isme hum apna answer upr jate huye bnate h so ans variable me store krlete h
+        if(idx >= str.length() - 1){  //means hm end tak chle gye ie 11 index so we will not hi from there 
+            if(idx == str.length() - 1) ans += str.charAt(idx);
+            System.out.println(ans);
+            return;
+        }
+        String s = str.substring(idx,idx+2);  //take 2 substring only at one time
+          if(s.equals("hi")){
+               countAllHi(str,idx+2,ans);  //if it is hi then nothing to do
+          } else {
+               countAllHi(str,idx+1,ans + str.charAt(idx)); //agar equal nhi h toh ans me vo charac add krdo 
+          }
+    }
+    
+    public static String countAllHi_(String str,int idx) {
+        if(idx >= str.length() - 1){  //means hm end tak chle gye ie 11 index so we will not hi from there 
+            if(idx == str.length() - 1) return (str.charAt(idx) + "");
+            return"";
+        }
+        String s = str.substring(idx,idx+2);  //take 2 substring only at one time
+          if(s.equals("hi")){
+              return countAllHi_(str,idx+2);  //means hi remove hokr aagye hai
+          } else {
+              return str.charAt(idx) + countAllHi_(str,idx+1); //upr se jo bhi aaya sab remove hogya aur hum hi ke equal nhi h to aage add krdo 
+          }
+    }
+    
   public static void main(String[] args) {
     // int a = scn.nextInt();
     // int n = scn.nextInt();
@@ -388,8 +429,16 @@ public class l001 {
     // pdi(n);
     // pdiOddEven(n);
     // System.out.println(factorial_(n));
-    String str = scn.next();
-    int div = scn.nextInt();
-    System.out.println(stringToNumber(str, str.length() - 1, 1) / div);
+    // String str = scn.next();
+    // int div = scn.nextInt();
+    // System.out.println(stringToNumber(str, str.length() - 1, 1) / div);
+
+    //main for count or remove hi
+     String str = scn.next();
+        int n = scn.nextInt();
+        
+        System.out.println(countAllHi(str,0));
+        System.out.println(countAllHi_(str,0).charAt(n));
+        countAllHi(str,0,"");
   }
 }

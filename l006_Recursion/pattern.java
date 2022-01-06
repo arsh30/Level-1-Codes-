@@ -29,6 +29,8 @@ public class pattern {
     triangle(cst + 1, nst, nor, n, m);
   }
 
+  //ques hacker rank
+
   public static void main(String[] args) {
     int n = 5, m = 5;
     // printRectangle(1, m, 1, n, m);
