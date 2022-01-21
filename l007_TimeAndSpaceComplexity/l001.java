@@ -28,14 +28,20 @@ public class l001 {
   }
 
   //   SELECTION SORT
-  public static int moveToStart(int[] arr, int si, int ei) {
-    int smallIdx = si; //isme smallIdx lenge then sabse compare krege then return krege niche
-
-    for (int i = si + 1; i <= ei; i++) {
-      if (isSmaller(arr, i, smallIdx)) smallIdx = i;
+  public static void moveToStart(int[] arr, int si, int ei) { //main
+        for (int i = si + 1; i <= ei; i++) {
+            if (arr[si] > arr[i])
+                swap(arr, si, i);
+        }
     }
-    return smallIdx;
-  }
+  // public static int moveToStart(int[] arr, int si, int ei) {
+  //   int smallIdx = si; //isme smallIdx lenge then sabse compare krege then return krege niche
+
+  //   for (int i = si + 1; i <= ei; i++) {
+  //     if (isSmaller(arr, i, smallIdx)) smallIdx = i;
+  //   }
+  //   return smallIdx;
+  // }
 
   public static void selectionSort(int[] arr) {
     // here we send the starting value and ending values ie si,ei
