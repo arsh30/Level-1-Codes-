@@ -180,4 +180,16 @@ public class l001 {
     }
     return res;
   }
+
+  public static void printAtDepthk(Node root, int k, ArrayList<Integer> ans) {
+    if (root == null || k < 0) {
+      return;
+    }
+    if (k == 0) {
+      ans.add(root.data);
+      return;
+    }
+    printAtDepthk(root.left, k - 1, ans);
+    printAtDepthk(root.right, k - 1, ans);
+  }
 }
