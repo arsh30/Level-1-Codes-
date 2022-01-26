@@ -162,4 +162,22 @@ public class l001 {
 
     return false;
   }
+
+  //Node to root path -> it is very important function and it is kind of helper function for all nodes distance k in binary tree
+
+  public static boolean rootToNodePath(
+    Node root,
+    int data,
+    ArrayList<Node> ans
+  ) {
+    if (root == null) return false;
+    boolean res =
+      (root.data == data) ||
+      rootToNodePath(root.left, data, ans) ||
+      rootToNodePath(root.right, data, ans);
+    if (res) {
+      ans.add(root);
+    }
+    return res;
+  }
 }
