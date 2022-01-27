@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class l001 {
 
@@ -181,15 +182,47 @@ public class l001 {
     return res;
   }
 
-  public static void printAtDepthk(Node root, int k, ArrayList<Integer> ans) {
-    if (root == null || k < 0) {
+  public static void printAtDepthk(
+    Node root,
+    Node block,
+    int k,
+    ArrayList<Integer> ans
+  ) {
+    if (root == null || root == block || k < 0) {
       return;
     }
     if (k == 0) {
       ans.add(root.data);
       return;
     }
-    printAtDepthk(root.left, k - 1, ans);
-    printAtDepthk(root.right, k - 1, ans);
+    printAtDepthk(root.left, block, k - 1, ans);
+    printAtDepthk(root.right, block, k - 1, ans);
+  }
+
+  //leetcode 863 vvv imp
+  public List<Integer> distanceK(Node root, Node target, int k) {
+    ArrayList<Node> path = new ArrayList<>();
+    rootToNodePath(root, target.data, path);
+
+    Node block = null;
+    ArrayList<Integer> ans = new ArrayList<>();
+    for (int i = 0; i < path.size(); i++) {
+      printAtDepthk(path.get(i), block, k - i, ans);
+      block = path.get(i);
+    }
+
+    return ans;
+  }
+
+  // print single child node
+  public static void printSingleChildNodes(Node node, Node parent) {
+    if (node == null) return;
+    if (parent != null && (parent.left == null || parent.right == null)) {
+    // if (parent != null && (node.left == null || node.right == null)) -> ye krte to {
+      System.out.println(node.data);
+    }
+
+    printSingleChildNodes(node.left, node);
+    printSingleChildNodes(node.right, node);
   }
 }
