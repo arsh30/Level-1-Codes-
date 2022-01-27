@@ -237,4 +237,32 @@ public class l001 {
 
     return node;
   }
+
+  //remove leaf with void type
+  //try to solve the question in pre order
+  public static void removeLeave(Node node, Node par) {
+    if (node == null)
+      return;
+
+    if (node.left == null && node.right == null) {
+      if (par.left == node)
+        par.left = null; //node is leaf
+      else if (par.right == node)
+        par.right = null;
+      return;
+    }
+    removeLeave(node.left, node);
+    removeLeave(node.right, node);
+  }
+  
+
+  public static Node removeLeave_01(Node node) {
+    //handle case -> if root node is our leaf node
+    if (node.left == null && node.right == null) {
+      return null;
+    }
+    removeLeave(node, null);
+    return node;
+  }
+  
 }
