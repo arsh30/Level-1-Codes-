@@ -218,11 +218,23 @@ public class l001 {
   public static void printSingleChildNodes(Node node, Node parent) {
     if (node == null) return;
     if (parent != null && (parent.left == null || parent.right == null)) {
-    // if (parent != null && (node.left == null || node.right == null)) -> ye krte to {
+      // if (parent != null && (node.left == null || node.right == null)) -> ye krte to {
       System.out.println(node.data);
     }
 
     printSingleChildNodes(node.left, node);
     printSingleChildNodes(node.right, node);
+  }
+
+  //removee leaf
+  public static Node removeLeaves(Node node) {
+    if (node == null) return null;
+    if (node.left == null && node.right == null) {
+      return null;
+    }
+    node.left = removeLeaves(node.left);
+    node.right = removeLeaves(node.right);
+
+    return node;
   }
 }
