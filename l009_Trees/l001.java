@@ -279,11 +279,21 @@ public class l001 {
   }
 
   //do isBST with return type -> so for this we have to make a class
-  public class isBSTSolPair {
+  public static class isBSTSolPair {
 
     int maxEle = -(int) 1e9;
     int minEle = (int) 1e9;
-    boolean isBST = false;
+    boolean isBST = true;
+
+    //for balance pair
+    int height = -1;
+    boolean isBal = true;
+
+    //largest bst
+    int largestBSTSize = 0;
+    Node largestBSTNode = null;
+
+    int totalNoOfBST = 0;
     //when we make a class so we have to make a constructor
     // public isBSTSolPair(int maxEle, int minEle, boolean isBST) {
     //   this.isBST = isBST;
@@ -359,5 +369,66 @@ public class l001 {
       myRes.height = Math.max(left.height, right.height) + 1;
     }
     return myRes;
+  }
+
+  //========================================================================================
+  // all in one
+  public isBSTSolPair isBST_01(Node node) {
+    if (node == null) {
+      isBSTSolPair base = new isBSTSolPair();
+      return base;
+    }
+
+    isBSTSolPair left = isBST_01(node.left);
+    isBSTSolPair right = isBST_01(node.right);
+
+    isBSTSolPair ans = new isBSTSolPair();
+
+    //false mark krege
+    ans.isBST = false;
+    ans.isBal = false;
+
+    //isBST
+    if (
+      left.isBST &&
+      right.isBST &&
+      left.maxEle < node.data &&
+      node.data < right.minEle
+    ) {
+      ans.isBST = true;
+    }
+
+    //isBal
+    if (
+      left.isBal && right.isBal && Math.abs(left.height - right.height) <= 1
+    ) {
+      ans.isBal = true;
+    }
+
+    //max,min,height - > assume krke chlre ki bst hai
+    ans.maxEle = Math.max(node.data, right.maxEle);
+    ans.minEle = Math.min(node.data, left.minEle);
+    ans.height = Math.max(left.height, right.height) + 1;
+
+    //total no of bst -> jo answer aaya + agar hm bhi bst hai to 1 add krege otherwise we make it to 0
+    ans.totalNoOfBST =
+      left.totalNoOfBST + right.totalNoOfBST + (ans.isBST ? 1 : 0);
+
+    //largestbstnode and largestbst size
+    if (ans.isBST) {
+      ans.largestBSTNode = node;
+      ans.largestBSTSize += left.largestBSTSize + right.largestBSTSize + 1; //agar leftbstsize hai right bst size hai aur hm khud bhi bst hai to largest to hum khud hoye so + 1 apne naam ka
+    } else {
+      //agar khud bst nhi hai to largestbst left me exist krta hoga ya right me
+      if (left.largestBSTSize > right.largestBSTSize) {
+        ans.largestBSTNode = left.largestBSTNode;
+        ans.largestBSTSize = left.largestBSTSize;
+      } else {
+        ans.largestBSTNode = right.largestBSTNode;
+        ans.largestBSTSize = right.largestBSTSize;
+      }
+    }
+
+    return ans;
   }
 }
