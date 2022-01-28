@@ -241,20 +241,16 @@ public class l001 {
   //remove leaf with void type
   //try to solve the question in pre order
   public static void removeLeave(Node node, Node par) {
-    if (node == null)
-      return;
+    if (node == null) return;
 
     if (node.left == null && node.right == null) {
-      if (par.left == node)
-        par.left = null; //node is leaf
-      else if (par.right == node)
-        par.right = null;
+      if (par.left == node) par.left = null; //node is leaf
+      else if (par.right == node) par.right = null;
       return;
     }
     removeLeave(node.left, node);
     removeLeave(node.right, node);
   }
-  
 
   public static Node removeLeave_01(Node node) {
     //handle case -> if root node is our leaf node
@@ -264,5 +260,104 @@ public class l001 {
     removeLeave(node, null);
     return node;
   }
-  
+
+  //Is BST
+  public static Node prev = null;
+
+  public static boolean isBST(Node node) {
+    if (node == null) return false;
+
+    boolean leftRes = isBST(node.left);
+    if (!leftRes) return false; //means agar left subtree se pta lag gya ki bst nhi hai to aage check nhi krege
+    if (prev != null && prev.data > node.data) return false;
+
+    prev = node;
+    boolean rightRes = isBST(node.right);
+    if (!rightRes) return false;
+
+    return true;
+  }
+
+  //do isBST with return type -> so for this we have to make a class
+  public class isBSTSolPair {
+
+    int maxEle = -(int) 1e9;
+    int minEle = (int) 1e9;
+    boolean isBST = false;
+    //when we make a class so we have to make a constructor
+    // public isBSTSolPair(int maxEle, int minEle, boolean isBST) {
+    //   this.isBST = isBST;
+    //   this.minEle = minEle;
+    //   this.maxEle = maxEle;
+    // }
+    // //default constructor
+    // public isBSTSolPair() {
+    //   //nothing have to pass it is default constructor
+    // }
+  }
+
+  public isBSTSolPair isBST_(Node node) {
+    //return type
+    if (node == null) {
+      isBSTSolPair base = new isBSTSolPair();
+      base.isBST = true;
+      return base;
+    }
+    isBSTSolPair left = isBST_(node.left);
+    isBSTSolPair right = isBST_(node.right);
+
+    isBSTSolPair ans = new isBSTSolPair();
+
+    if (
+      left.isBST &&
+      right.isBST &&
+      left.maxEle < node.data &&
+      node.data < right.minEle
+    ) {
+      //agar yeh sab hai to it is a bst, so we have to set them because hme return krna hai
+      // so return krn hai ik new ans bnakr usme return krege
+      ans.isBST = true;
+      ans.maxEle = Math.max(node.data, right.maxEle);
+      ans.minEle = Math.max(node.data, left.minEle);
+    }
+    return ans;
+  }
+
+  //ques-> balanc pair with return type
+  public class isBalPair {
+
+    int height = -1; //to check the balance from left and write so we need this, and yeh left balance hai right bhi balance hai
+    //or yeh information hmne parent ko deni hai so we need extra parameter that is boolean bal
+    boolean balanceTree = false;
+    // public isBalPair(int height) {
+    //   this.height = height;
+    // }
+  }
+
+  public isBalPair isBal_(Node node) {
+    if (node == null) {
+      isBalPair base = new isBalPair();
+      base.balanceTree = true;
+      return base;
+    }
+
+    isBalPair left = isBal_(node.left);
+    if (!left.balanceTree) return left;
+    isBalPair right = isBal_(node.right);
+    if (!right.balanceTree) {
+      return right;
+    }
+
+    isBalPair myRes = new isBalPair();
+    if (
+      left.balanceTree &&
+      right.balanceTree &&
+      Math.abs(left.height - right.height) <= 1
+    ) {
+      //it means it is balance tree, so we have to set the values
+      myRes.balanceTree = true;
+      myRes.height = Math.max(left.height, right.height) + 1;
+    }
+    return myRes;
+  }
 }
