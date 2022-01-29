@@ -103,4 +103,61 @@ public class l002_BST {
       return true;
     }
   }
+
+  public static boolean findItr(Node node, int data) {
+    Node curr = node;
+    while (curr != null) {
+      if (curr.data == data) {
+        return true;
+      } else if (curr.data < data) {
+        curr = curr.right;
+      } else {
+        curr = curr.left;
+      }
+    }
+    return false;
+  }
+
+  public static Node add(Node node, int data) {
+    if (node == null) {
+      Node baseNode = new Node(data, null, null);
+      return baseNode;
+    }
+    if (data > node.data) {
+      node.right = add(node.right, data);
+    } else if (data < node.data) {
+      node.left = add(node.left, data);
+    } else {
+      //nothing to do
+    }
+    return node;
+  }
+
+  public static Node addDataItr(Node node, int data) {
+    if (node == null) return new Node(data, null, null);
+
+    Node curr = node;
+    Node addNode = new Node(data, null, null); //the node to be add
+
+    while (true) {
+      if (curr.data == data) {
+        break;
+      } else if (data > curr.data) {
+        if (curr.right != null) {
+          curr = curr.right;
+        } else {
+          curr.right = addNode;
+          break;
+        }
+      } else {
+        if (curr.left != null) {
+          curr = curr.left;
+        } else {
+          curr.left = addNode;
+          break;
+        }
+      }
+    }
+    return node;
+  }
 }
