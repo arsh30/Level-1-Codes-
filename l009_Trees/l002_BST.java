@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class l002_BST {
@@ -205,6 +206,47 @@ public class l002_BST {
     } else {
       //means idr dono divide hore hai to vo dono divide hore h
       return node.data;
+    }
+  }
+
+  //replaceSumOfLargerBST -> travel inorder from right to left
+  public static int sum = 0;
+
+  public static void replaceSumOfLargerBST(Node node) {
+    if (node == null) return;
+
+    replaceSumOfLargerBST(node.right);
+    int originaldata = node.data;
+    node.data = sum;
+    sum += originaldata;
+    replaceSumOfLargerBST(node.left);
+  }
+
+  //target sum pair
+  public static void inOrderTraversal(Node node, ArrayList<Integer> ans) {
+    if (node == null) return;
+
+    inOrderTraversal(node.left, ans);
+    ans.add(node.data);
+    inOrderTraversal(node.right, ans);
+  }
+
+  public static void targetSumPair(Node node, int target) {
+    ArrayList<Integer> list = new ArrayList<>();
+    inOrderTraversal(node, list);
+
+    int i = 0, j = list.size() - 1;
+    while (i < j) { //index
+      int sum = list.get(i) + list.get(j);
+      if (sum > target) {
+        j--;
+      } else if (sum < target) {
+        i++;
+      } else {
+        System.out.println(list.get(i) + " " + list.get(j));
+        i++;
+        j--;
+      }
     }
   }
 }
