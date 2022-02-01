@@ -160,4 +160,51 @@ public class l002_BST {
     }
     return node;
   }
+
+  //remove child -> ============================
+  public static int max(Node node) {
+    Node curr = node;
+    while (curr.right != null) {
+      curr = curr.right;
+    }
+    return curr.data;
+  }
+
+  public static Node remove(Node node, int data) {
+    if (node == null) return null;
+    if (data > node.data) {
+      node.right = remove(node.right, data);
+    } else if (data < node.data) {
+      node.left = remove(node.left, data);
+    } else {
+      //work
+      if (node.left != null && node.right != null) {
+        int leftMax = max(node.left);
+        node.data = leftMax;
+        node.left = remove(node.left, leftMax); //left side me se data ko remove kra then usko attach kra
+        return node;
+      } else if (node.left != null) {
+        return node.left; //upr jo call lgayi thi node.left usse attach hojega
+      } else if (node.right != null) {
+        return node.right;
+      } else {
+        //it is leave
+        return null;
+      }
+    }
+
+    return node;
+  }
+
+  public static int lca(Node node, int d1, int d2) {
+    // write your code here
+    if (d1 < node.data && d2 < node.data) {
+      return lca(node.left, d1, d2);
+    } else if (d1 > node.data && d2 > node.data) { //agar dono bde hai to obvsly  right me milege
+      return lca(node.right, d1, d2);
+    } else {
+      //means idr dono divide hore hai to vo dono divide hore h
+      return node.data;
+    }
+  }
 }
