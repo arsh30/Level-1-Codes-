@@ -82,5 +82,50 @@ public class l003_GT {
     return res;
   }
 
-  
+  public static Node LCANode(Node node, int d1, int d2) {
+    ArrayList<Node> list1 = new ArrayList<>();
+    ArrayList<Node> list2 = new ArrayList<>();
+
+    nodeToRootPath(node, d1, list1);
+    nodeToRootPath(node, d2, list2);
+
+    int i = list1.size() - 1;
+    int j = list2.size() - 1;
+
+    Node LCA = null;
+    int LCADistance = 0;
+
+    while (i >= 0 && j >= 0) {
+      if (list1.get(i) != list2.get(j)) break; //means jidr bhi unequal aaya that is the lca
+      //set the lca
+      LCADistance++;
+      LCA = list1.get(i);
+      i--;
+      j--;
+    }
+    return LCA;
+  }
+
+  public static int NodeToNodeDistance(Node node, int d1, int d2) {
+    ArrayList<Node> list1 = new ArrayList<>();
+    ArrayList<Node> list2 = new ArrayList<>();
+    nodeToRootPath(node, d1, list1);
+    nodeToRootPath(node, d2, list2);
+
+    int i = list1.size() - 1;
+    int j = list2.size() - 1;
+
+    int LCADistance = 0;
+    while (i >= 0 && j >= 0) {
+      if (list1.get(i) != list2.get(j)) break;
+
+      LCADistance++;
+      i--;
+      j--;
+    }
+
+    int distance = (list1.size() + list2.size() - 2 * (LCADistance) + 1); //DISTANCE IN TERMS OF NODES
+    // int dis = (list1.size() + list2.size() - 2 * (LCADistance) + 1 - 1); //DISTANCE IN TERMS OF EDGES
+    return distance;
+  }
 }
