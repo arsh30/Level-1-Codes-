@@ -128,4 +128,17 @@ public class l003_GT {
     // int dis = (list1.size() + list2.size() - 2 * (LCADistance) + 1 - 1); //DISTANCE IN TERMS OF EDGES
     return distance;
   }
+
+  public static void linearize_01(Node node) {
+    for (Node child : node.childs) {
+      linearize(child);
+    }
+
+    while (node.childs.size() == 1) {
+      Node lc = node.childs.remove(node.childs.size() - 1);
+      Node slc = node.childs.get(node.childs.size() - 1); //2nd last child ki tail mangwani hai
+      Node slt = getTail(slc);
+      slt.childs.add(lc);
+    }
+  }
 }
