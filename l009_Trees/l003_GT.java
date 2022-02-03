@@ -129,16 +129,36 @@ public class l003_GT {
     return distance;
   }
 
+  public static Node getTail(Node node) {
+    Node curr = node;
+    while (curr.childs.size() == 1) {
+      curr = curr.childs.get(0); //0 means 1 child
+    }
+    return curr;
+  }
+
   public static void linearize_01(Node node) {
+    for (Node child : node.childs) {
+      linearize_01(child);
+    }
+
+    while (node.childs.size() > 1) {
+      Node lc = node.childs.remove(node.childs.size() - 1);
+      Node slc = node.childs.get(node.childs.size() - 1); //2nd last child ki tail chaiye so usse pehle puri tail get kri
+      Node slt = getTail(slc);
+      slt.childs.add(lc);
+    }
+  }
+
+  public static void linearize(Node node) {
     for (Node child : node.childs) {
       linearize(child);
     }
 
-    while (node.childs.size() == 1) {
-      Node lc = node.childs.remove(node.childs.size() - 1);
-      Node slc = node.childs.get(node.childs.size() - 1); //2nd last child ki tail mangwani hai
-      Node slt = getTail(slc);
-      slt.childs.add(lc);
+    for (int i = node.childs.size() - 2; i >= 0; i--) { //loop start from the end
+      Node tail = getTail(node.childs.get(i)); //child -> root ke ke 3 childs hai
+      tail.childs.add(node.childs.get(i + 1));
+      node.childs.remove(i + 1);
     }
   }
 }
