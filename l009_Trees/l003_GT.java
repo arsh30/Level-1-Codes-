@@ -69,6 +69,20 @@ public class l003_GT {
     return res;
   }
 
+  public static void display(Node node) {
+    //print 1st line
+    System.out.print(node.data + " -> ");
+    for (Node child : node.childs) {
+      System.out.print(child.data + ",");
+    }
+    System.out.println();
+
+    //faith -> niche wale child apna krke le aayege
+    for (Node child : node.childs) {
+      display(child);
+    }
+  }
+
   public static boolean nodeToRootPath(
     Node node,
     int data,
@@ -160,5 +174,79 @@ public class l003_GT {
       tail.childs.add(node.childs.get(i + 1));
       node.childs.remove(i + 1);
     }
+  }
+
+  public static Node linearize_Btr(Node node) {
+    //faith hmko linearise list milegi aur sath sath hme tail bhi miljayega
+
+    //how do we know ki hmara koi node tail hai
+    if (node.children.size() == 0) {
+      return node;
+    }
+    int n = node.childs.size();
+    Node gtail = linearize_Btr(node.childs.get(n - 1));
+    for (int i = n - 2; i >= 0; i--) {
+      Node tail = linearize_Btr(node.childs.get(i));
+      tail.childs.add(node.childs.get(i + 1));
+      node.childs.remove(i + 1);
+    }
+    //final return kya krega 10 wala person ie Node?  sol tail so tail mangwaege
+    return gtail;
+  }
+
+  //binary tree and generic  tree this ques is similar in both
+  static int ceil;
+  static int floor;
+
+  public static void ceilAndFloor(Node node, int data) {
+    // compare the node data
+    if (node.data > data) {
+      ceil = Math.min(ceil, node.data);
+    }
+    if (node.data < data) {
+      floor = Math.max(floor, node.data);
+    }
+
+    //call for childs
+    for (Node child : node.childs) {
+      ceilAndFloor(child, data);
+    }
+  }
+
+  //do this without static and global so iske liye hme helper function require hoga
+  public static int kthLargest_(Node node, int bound) {
+    int maxLargerThanBound = -(int) 1e8; //it give the largest value in the tree
+
+    for (Node child : node.childs) {
+      int recAns = kthLargest_(child, bound); //largest value dega but short than bound
+      maxLargerThanBound = Math.max(maxLargerThanBound, recAns);
+    }
+
+    //hmko sab milgya but we did not compare this with root
+    if (node.data < bound) {
+      maxLargerThanBound = Math.max(maxLargerThanBound, node.data);
+    }
+    return maxLargerThanBound;
+  }
+
+  public static int kthLargest(Node node, int k) {
+    int bound = (int) 1e8;
+    while (k-- > 0) {
+      bound = kthLargest_(node, bound);
+    }
+    return bound;
+  }
+
+  public static boolean areSimilar(Node n1, Node n2) {
+    if (n1.childs.size() != n2.childs.size()) {
+      return false;
+    }
+
+    for (int i = 0; i < n1.childs.size(); i++) {
+      Node c1 = n1.childs.get(i);
+      Node c2 = n2.childs.get(i);
+      if (areSimilar(c1, c2) == false) return false;
+    }
+    return true;
   }
 }
