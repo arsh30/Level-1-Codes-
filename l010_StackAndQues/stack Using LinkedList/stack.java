@@ -4,6 +4,7 @@
  is addFirst, addLast, removeFirst,getFirst linked list operations
 
 */
+import java.util.LinkedList;
 
 public class stack {
 
