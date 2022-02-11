@@ -1,4 +1,4 @@
-//in this we dont use any linked list, we make our own linked list
+//in this we dont use any linked list features, we make our own linked list
 public class queue01 {
 
   public class Node {

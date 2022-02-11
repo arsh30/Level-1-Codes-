@@ -40,7 +40,7 @@ LINKED LIST INBUILT METHODS ->
 4) removeLast() ->	Remove an item from the end of the list	, Time Complexity -> O(n)
 5) getFirst()	-> Get the item at the beginning of the list,	Time Complexity ->
 6) getLast() -> Get the item at the end of the list, Time Complexity ->
-size() -> it gives the size  TIME complexity is Ammortized O(1);
+7) size() -> it gives the size  TIME complexity is Ammortized O(1);
 
 STACK INBUILT METHOD -> Push, pop, top
 
