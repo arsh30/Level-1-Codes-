@@ -1,0 +1,24 @@
+1) It is a Data-Structure that can help to do operations like searching,Remove,Addition,Get in Ammotized O(1). Ammotized O(1) means 
+very very less than O(n)
+
+2)It is a key,Value pair. we need this hashmap where we will have to store in the key value form. 
+  eg: 1) Hashmap of rollNo vs Name
+      2) Hashmap of country vs Mobile No. It is like a Table eg: if we have a list of 1000 students, we have to find a one student
+      so hm directly hashmap me find krlenge in O(1)
+
+---------------------IMPORTANT NOTES OF THE HASHMAP FUNCTION -----------------
+
+1) HashMap<key, value> map = new HashMap<>() eg: HashMap<String, Integer> map = new HashMap<>(); 
+
+2) In Hashmap we can print directly eg: System.out.println(map); means jese hm linked list array me 
+    loop lgakr print krte the to isme aisa nahi hota,
+    System.out.println(map); -> isse sare key value ik single line me aajegi
+
+3) if we want to print the value in multiple lines, we use for each loop
+        for(String keys : map.keySet()){
+            System.out.println(keys + "->" + map.get(keys));
+        }
+
+4) 
+
+

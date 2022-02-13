@@ -13,9 +13,9 @@ public class questions {
     Stack<Character> st = new Stack<>();
     for (int i = 0; i < str.length(); i++) {
       char ch = str.charAt(i);
-      if (
-        ch == '(' || ch == '[' || ch == '{'
-      ) st.push(ch); else if (ch == ')' || ch == ']' || ch == '}') { //3 possiblities to push in stack
+      if (ch == '(' || ch == '[' || ch == '{') st.push(ch); else if (
+        ch == ')' || ch == ']' || ch == '}'
+      ) { //3 possiblities to push in stack
         if (st.size() == 0) return false; //eg ](a + b) [ => to stack me to kuch hoega nahi that means stack is empty return false
         else if (ch == ')' && st.peek() != '(') return false; else if (
           ch == ']' && st.peek() != '['
@@ -28,6 +28,8 @@ public class questions {
     }
     return st.size() == 0; //means stack size is agar 0 hai to true nhi to false
   }
+
+  //ques2 ->
 
   public static void main(String[] args) throws Exception {
     String str = scn.nextLine();
