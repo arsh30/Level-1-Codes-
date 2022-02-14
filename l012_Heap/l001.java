@@ -112,7 +112,7 @@ public class l001 {
     );
 
     for (Integer e : map.keySet()) { //for loop hashmap or put them in pq one by one
-      pq.add(e);
+      pq.add(e); //yeh direct key store kri hai pq me and yeh compare krega in hashmap ki frequency se
       if (pq.size() > k) {
         pq.remove();
       }
@@ -122,6 +122,40 @@ public class l001 {
     while (pq.size() != 0) {
       ans[idx++] = pq.remove(); //On removing, we get an array at 0 index
     }
+    return ans;
+  }
+
+  //ques topk frequent words leetcode 692
+  public List<String> topKFrequent(String[] words, int k) {
+    HashMap<String, Integer> map = new HashMap<>();
+    for (String word : words) {
+      map.put(word, map.getOrDefault(word, 0) + 1);
+    }
+
+    PriorityQueue<String> pq = new PriorityQueue<>(
+      (a, b) -> {
+        if (map.get(a) == map.get(b)) { //if both frequency are same then comapre to their lexical order
+          return b.compareTo(a);
+        }
+        return map.get(a) - map.get(b);
+      }
+    );
+
+    //traverse on the map
+    for (String word : map.keySet()) { //this for loop we got the top frequent elements
+      pq.add(word);
+      if (pq.size() > k) pq.remove();
+    }
+    int idx = pq.size();
+    List<String> ans = new ArrayList<>();
+    for (int i = 0; i < idx; i++) {
+      ans.add("");
+    }
+
+    while (pq.size() != 0) {
+      ans.set(--idx, pq.remove());
+    }
+
     return ans;
   }
 
