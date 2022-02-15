@@ -141,7 +141,7 @@ public class l001 {
       }
     );
 
-    //traverse on the map
+    //traverse on the Hashmap
     for (String word : map.keySet()) { //this for loop we got the top frequent elements
       pq.add(word);
       if (pq.size() > k) pq.remove();
@@ -157,6 +157,25 @@ public class l001 {
     }
 
     return ans;
+  }
+
+  //ques -> sortKsortedArray
+  public static void sortKSortedArray(int[] arr, int k) {
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
+    int idx = 0;
+    for (int ele : arr) {
+      pq.add(ele);
+      if (pq.size() > k) {
+        arr[idx++] = pq.remove();
+      }
+    }
+    while (pq.size() != 0) {
+      arr[idx++] = pq.remove();
+    }
+    //Now print the array
+    for (int ele : arr) {
+      System.out.println(ele);
+    }
   }
 
   public static void main(String[] args) {
