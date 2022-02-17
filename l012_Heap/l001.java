@@ -178,6 +178,98 @@ public class l001 {
     }
   }
 
+  // ques important sortKSortedArray important with time compplexity
+  public static ArrayList<Integer> mergeKSortedLists(
+    ArrayList<ArrayList<Integer>> lists
+  ) {
+    ArrayList<Integer> rv = new ArrayList<>();
+    PriorityQueue<int[]> pq = new PriorityQueue<>(
+      (a, b) -> {
+        return a[0] - b[0]; //we are putting 3 thing in pq that compares ie element,index,array of list
+      }
+    );
+
+    for (int i = 0; i < lists.size(); i++) {
+      pq.add(new int[] { lists.get(i).get(0), 0, i }); //starting me sab 0 element wale put krdiye pq me
+    }
+
+    while (pq.size() != 0) {
+      int[] ar = pq.remove(); //remove kra or add krna ans me remove krne pr we get element, index, index of lists so we want element
+      rv.add(ar[0]);
+
+      //now increment the index jis list se remove kra tha
+      int idx = ar[1]; //isliye catch kra taki next index put kr paye
+      int listIdx = ar[2];
+      int length = lists.get(listIdx).size(); //length isliye taki pta kr ske ki end hogya list ka
+      if (idx + 1 < length) {
+        ar[1]++; //increment the index of the remove element because usko add krna hai
+        ar[0] = lists.get(listIdx).get(idx + 1); //store the next value;
+        pq.add(ar);
+      }
+    }
+
+    return rv;
+  }
+
+  /*
+  ------------------------------------------------------------------------------------------
+  //Note: whenever we want to traverse on the array store the index in any variable
+ -------------------------------------------------------------------------------------------
+ */
+
+  public static ArrayList<Integer> mergeTwoList(
+    ArrayList<Integer> list1,
+    ArrayList<Integer> list2
+  ) {
+    //By: MergeSort It is Better than PriorityQueue
+    ArrayList<Integer> ans = new ArrayList<>();
+    int i = 0, n = list1.size();
+    int j = 0, m = list2.size();
+
+    while (i < n && j < m) {
+      if (list1.get(i) < list2.get(j)) {
+        ans.add(list1.get(i++));
+      } else {
+        ans.add(list2.get(j++)); //means first i add hoga then immediately ++ hoga
+      }
+    }
+
+    while (i < n) { //means 2nd list 1 is left
+      ans.add(list1.get(i));
+      i++;
+    }
+    while (j < m) {
+      ans.add(list2.get(j));
+      j++;
+    }
+    return ans;
+  }
+
+  public static ArrayList<Integer> mergeKSortedLists(
+    ArrayList<ArrayList<Integer>> lists,
+    int si,
+    int ei
+  ) {
+    //apply merge sort logic
+    if (si == ei) {
+      return lists.get(si);
+    }
+
+    int mid = (si + ei) / 2;
+    ArrayList<Integer> list1 = mergeKSortedLists(lists, si, mid); //NOTE:  initialise krne k liye new ni krna pdhta kuch bhi
+    ArrayList<Integer> list2 = mergeKSortedLists(lists, mid + 1, ei);
+
+    return mergeTwoList(list1, list2);
+  }
+
+  /*
+  Note: -> priority queue is slower because it made it on heap
+
+        what is Anagram? 
+        sol -> 1) same character with same frequency
+               2)No different character are allowed
+  */
+
   public static void main(String[] args) {
     // minPQ();
     maxPQ();
