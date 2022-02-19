@@ -46,4 +46,37 @@ public class questions {
     return map.size() == 0; //agar yeh 0 hai to true
   }
 
+  //ques 242 leetcode
+  public String RLES(String str) { //run length encoded string ie a1b2c3
+    int[] freq = new int[26]; //find frequency of each character
+    for (int i = 0; i < str.length(); i++) {
+      freq[str.charAt(i) - 'a']++;
+    }
+
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+      if (freq[i] != 0) {
+        sb.append((char) (i + 'a'));
+        sb.append(freq[i]);
+      }
+    }
+    return sb.toString();
+  }
+
+  public List<List<String>> groupAnagrams(String[] strs) {
+    HashMap<String, ArrayList<String>> map = new HashMap<>();
+    /*
+        String -> means yeh btaega ki leader kon hai and arraylist me kon ja skta hai
+        */
+    for (String s : strs) {
+      String rles = RLES(s); //it gives the frequency of each string
+      map.putIfAbsent(rles, new ArrayList<>()); //put the frequency of each string in HashMap
+      map.get(rles).add(s);
+    }
+    List<List<String>> ans = new ArrayList<>();
+    for (String key : map.keySet()) {
+      ans.add(map.get(key)); //assigning the values
+    }
+    return ans;
+  }
 }
