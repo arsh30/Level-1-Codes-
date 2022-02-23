@@ -15,7 +15,7 @@ public class heap {
 
   //constructor
   public heap() {
-    initialise(true);  //bydefault max pq
+    initialise(true); //bydefault max pq
   }
 
   /*constructor2-> 2 tarike ke log heap bna skte hai 1) 1 person jo baar baar data add krega 
@@ -84,7 +84,7 @@ public class heap {
 
   private void upHeapify(int childIdx) { //this is to add the data
     int pi = (childIdx - 1) / 2;
-    if (pi >= 0 && compareTo(childIdx,pi) > 0) { //agra ci wale quantity bdi hojati hai to usse preference denge
+    if (pi >= 0 && compareTo(childIdx, pi) > 0) { //agra ci wale quantity bdi hojati hai to usse preference denge
       swap(pi, childIdx);
       upHeapify(pi);
     }
@@ -97,10 +97,10 @@ public class heap {
 
     //point is kya jisko hmne maxidx kya vo schme maxIdx hai, so check krege ki exist kon krta hai
     // if (leftChild < arr.size() && arr.get(maxIdx) < arr.get(leftChild)) {
-    if (leftChild < arr.size() && compareTo(leftChild,maxIdx) > 0) {
+    if (leftChild < arr.size() && compareTo(leftChild, maxIdx) > 0) {
       maxIdx = leftChild;
     }
-    if (rightChild < arr.size() && compareTo(rightChild,maxIdx) > 0) {
+    if (rightChild < arr.size() && compareTo(rightChild, maxIdx) > 0) {
       maxIdx = rightChild;
     }
     //above two if's will compare the maxIdx; maxIdx usko point krega jiski priority jyda hai
