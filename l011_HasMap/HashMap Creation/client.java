@@ -1,15 +1,17 @@
 import java.util.Scanner;
+
 public class client {
-  public static Scanner scn = new Scanner(System.in); 
+
+  public static Scanner scn = new Scanner(System.in);
 
   public static void main(String[] args) {
     HashMap1 map = new HashMap1();
-    map.put(10, 1);
-    map.put(11, 14);
-    map.put(12, 16);
-    map.put(13, 17);
-    map.put(14, 8);
-    map.put(15, 9);
+    // map.put(10, 1);
+    // map.put(11, 14);
+    // map.put(12, 16);
+    // map.put(13, 17);
+    // map.put(14, 8);
+    // map.put(15, 9);
 
     // System.out.println(map.get(12));
     // System.out.println(map.getOrDefault(120,null));
@@ -17,12 +19,12 @@ public class client {
     // System.out.println(map.get(120));
 
     //make a frequency map
-    for(int i = 0; i <= 10; i++) {
-        int a = scn.nextInt();
-        map.put(a,map.getOrDefault(a,0) + 1);
+    for (int i = 0; i < 10; i++) {
+      int a = scn.nextInt();
+      map.put(a, map.getOrDefault(a, 0) + 1);
     }
 
-    System.out.println(map.get(1));
-    System.out.println(map.get(3));
+    // System.out.println(map); -> yeh krne se address print hora hai so hme map ke toString ko override krege
+    System.out.println(map);
   }
 }

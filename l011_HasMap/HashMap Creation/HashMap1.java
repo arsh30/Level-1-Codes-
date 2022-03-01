@@ -12,6 +12,11 @@ public class HashMap1 {
       this.key = key;
       this.value = value;
     }
+
+    // @Override
+    // public String toString() {
+    //   return key + "=" + value;
+    // }
   }
 
   LinkedList<Node>[] buckets; //2nd step to make buckets and make nodes jisme key value hoga
@@ -27,10 +32,32 @@ public class HashMap1 {
     }
 
     this.maxSizeOfBucket = size; //jo size aaya utne size ka array create hua
+    this.noOfElements = 0;
   }
 
   public HashMap1() { //3rd step hashmap constructor
     initialise(10);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("[");
+    //same work krege jese hm keyset mangware the
+    for (int i = 0; i < buckets.length; i++) {
+      //har bucket pr arrayList pdhi hai uska group mangwaya
+      LinkedList<Node> group = this.buckets[i];
+
+      //loop chla kar print krliya
+      int size = group.size(); //linkedlist function
+      while (size-- > 0) {
+        sb.append(group.getFirst()); //yeh krne se milega hmko Node, so hm node ka jo address hai vo print hoga , so hmko node ke andr bhi
+        //   toString krna pdhega -> so Node ke upr toString kra toh vo uska adress nhi print krega direct krega direct keyvalue print krega
+        group.addLast(group.removeFirst());
+      }
+    }
+    sb.append("]");
+    return sb.toString();
   }
 
   // Basic functions ->
@@ -42,6 +69,20 @@ public class HashMap1 {
     return this.size() == 0; //yeh current function
   }
 
+  private void reHash() {
+    LinkedList<Node>[] temp = this.buckets; //1) copy the data into new array
+    initialise(2 * this.maxSizeOfBucket); //create this temp double size
+
+    for (int i = 0; i < temp.length; i++) {
+      LinkedList<Node> group = temp[i]; //1st group mangwaya
+      int size = group.size(); // iterates over the loop
+      while (size-- > 0) {
+        Node node = group.removeFirst();
+        put(node.key, node.value);
+      }
+    }
+  }
+
   public void put(Integer key, Integer value) {
     LinkedList<Node> group = group(key); //1st we have to bring the l=group ie linkedlist
     boolean res = containsKey(key); //means add the key jo hmko chahiye vo first place pr aajegi
@@ -51,6 +92,11 @@ public class HashMap1 {
     }
     Node node = new Node(key, value);
     group.addLast(node);
+    this.noOfElements++;
+
+    //doing hashing
+    double lamda = (0.4 * this.maxSizeOfBucket);
+    if (group.size() > lamda) reHash();
   }
 
   //If we found value, return the value ptherwise return null
@@ -69,6 +115,7 @@ public class HashMap1 {
     if (res) {
       return group.removeFirst().value;
     }
+    this.noOfElements--;
     return null;
   }
 
@@ -112,7 +159,11 @@ public class HashMap1 {
     return value;
   }
 
-  public void putIfAbsent(Integer key, Integer value) {}
+  public void putIfAbsent(Integer key, Integer value) {
+    LinkedList<Node> group = group(key);
+    boolean res = containsKey(key);
+    if (!res) put(key, value);
+  }
 
   private LinkedList<Node> group(Integer key) { // 1 group is called linkedlist
     Integer groupNo = groupNo(key); //1) yeh group konse group ko belong krta kese pta lgaya so hmne group no mangwaya
