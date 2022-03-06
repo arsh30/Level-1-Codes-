@@ -132,7 +132,7 @@ public class l003 {
   }
 
   public static int findTargetSumWays(int[] nums, int S, int idx) {
-    if (idx == nums.length) { 
+    if (idx == nums.length) {
       return S == 0 ? 1 : 0;
     }
     int count = 0;
